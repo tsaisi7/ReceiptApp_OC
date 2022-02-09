@@ -7,28 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C74B627B15E220085BA8D /* ProfileViewController.m */; };
+		662343A827B35F22002A29D4 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343A727B35F22002A29D4 /* Receipt.m */; };
+		662343AB27B36D43002A29D4 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343AA27B36D43002A29D4 /* ScannerViewController.m */; };
+		6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F22B27B2A597009CFF54 /* AddProductViewController.m */; };
+		6623F22F27B2D07A009CFF54 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F22E27B2D07A009CFF54 /* Product.m */; };
+		6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F23127B2D1C5009CFF54 /* EditProductViewController.m */; };
 		664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E920627B0FAA700EE53C1 /* AppDelegate.m */; };
 		664E920A27B0FAA700EE53C1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E920927B0FAA700EE53C1 /* SceneDelegate.m */; };
-		664E920D27B0FAA700EE53C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E920C27B0FAA700EE53C1 /* ViewController.m */; };
 		664E921027B0FAA700EE53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664E920E27B0FAA700EE53C1 /* Main.storyboard */; };
 		664E921227B0FAAA00EE53C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 664E921127B0FAAA00EE53C1 /* Assets.xcassets */; };
 		664E921527B0FAAA00EE53C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664E921327B0FAAA00EE53C1 /* LaunchScreen.storyboard */; };
 		664E921827B0FAAA00EE53C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E921727B0FAAA00EE53C1 /* main.m */; };
+		664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E922227B11F6E00EE53C1 /* LoginViewController.m */; };
+		664E922627B120DC00EE53C1 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E922527B120DC00EE53C1 /* SignUpViewController.m */; };
+		664E922C27B127E500EE53C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 664E922B27B127E500EE53C1 /* GoogleService-Info.plist */; };
+		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
+		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
+		A3DF69ECED19F4720B6A19B5 /* Pods_ReceiptApp_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReceiptApp_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.debug.xcconfig"; sourceTree = "<group>"; };
+		660C74B527B15E220085BA8D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		660C74B627B15E220085BA8D /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		662343A627B35F22002A29D4 /* Receipt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
+		662343A727B35F22002A29D4 /* Receipt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
+		662343A927B36D43002A29D4 /* ScannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		662343AA27B36D43002A29D4 /* ScannerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		6623F22A27B2A597009CFF54 /* AddProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddProductViewController.h; sourceTree = "<group>"; };
+		6623F22B27B2A597009CFF54 /* AddProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddProductViewController.m; sourceTree = "<group>"; };
+		6623F22D27B2D07A009CFF54 /* Product.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		6623F22E27B2D07A009CFF54 /* Product.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
+		6623F23027B2D1C5009CFF54 /* EditProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
+		6623F23127B2D1C5009CFF54 /* EditProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
 		664E920227B0FAA700EE53C1 /* ReceiptApp_OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptApp_OC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664E920527B0FAA700EE53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		664E920627B0FAA700EE53C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		664E920827B0FAA700EE53C1 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		664E920927B0FAA700EE53C1 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		664E920B27B0FAA700EE53C1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		664E920C27B0FAA700EE53C1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		664E920F27B0FAA700EE53C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		664E921127B0FAAA00EE53C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		664E921427B0FAAA00EE53C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		664E921627B0FAAA00EE53C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		664E921727B0FAAA00EE53C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		664E922127B11F6E00EE53C1 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		664E922227B11F6E00EE53C1 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		664E922427B120DC00EE53C1 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		664E922527B120DC00EE53C1 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		664E922B27B127E500EE53C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66F2368627B24F1E007EB844 /* AddReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReceiptViewController.h; sourceTree = "<group>"; };
+		66F2368727B24F1E007EB844 /* AddReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReceiptViewController.m; sourceTree = "<group>"; };
+		66F2368927B26D11007EB844 /* ProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
+		66F2368A27B26D11007EB844 /* ProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
+		C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.release.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3DF69ECED19F4720B6A19B5 /* Pods_ReceiptApp_OC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +81,8 @@
 			children = (
 				664E920427B0FAA700EE53C1 /* ReceiptApp_OC */,
 				664E920327B0FAA700EE53C1 /* Products */,
+				E98DD1C93FD3873AB97C372D /* Pods */,
+				DB5437E760B448445B034464 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,19 +97,87 @@
 		664E920427B0FAA700EE53C1 /* ReceiptApp_OC */ = {
 			isa = PBXGroup;
 			children = (
+				664E922B27B127E500EE53C1 /* GoogleService-Info.plist */,
+				664E922A27B1213100EE53C1 /* View */,
+				664E922927B1210D00EE53C1 /* Model */,
+				664E922827B1210200EE53C1 /* Storyboard */,
+				664E922727B120E500EE53C1 /* Controller */,
 				664E920527B0FAA700EE53C1 /* AppDelegate.h */,
 				664E920627B0FAA700EE53C1 /* AppDelegate.m */,
 				664E920827B0FAA700EE53C1 /* SceneDelegate.h */,
 				664E920927B0FAA700EE53C1 /* SceneDelegate.m */,
-				664E920B27B0FAA700EE53C1 /* ViewController.h */,
-				664E920C27B0FAA700EE53C1 /* ViewController.m */,
-				664E920E27B0FAA700EE53C1 /* Main.storyboard */,
 				664E921127B0FAAA00EE53C1 /* Assets.xcassets */,
-				664E921327B0FAAA00EE53C1 /* LaunchScreen.storyboard */,
 				664E921627B0FAAA00EE53C1 /* Info.plist */,
 				664E921727B0FAAA00EE53C1 /* main.m */,
 			);
 			path = ReceiptApp_OC;
+			sourceTree = "<group>";
+		};
+		664E922727B120E500EE53C1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				664E922127B11F6E00EE53C1 /* LoginViewController.h */,
+				664E922227B11F6E00EE53C1 /* LoginViewController.m */,
+				664E922427B120DC00EE53C1 /* SignUpViewController.h */,
+				664E922527B120DC00EE53C1 /* SignUpViewController.m */,
+				660C74B527B15E220085BA8D /* ProfileViewController.h */,
+				660C74B627B15E220085BA8D /* ProfileViewController.m */,
+				66F2368627B24F1E007EB844 /* AddReceiptViewController.h */,
+				66F2368727B24F1E007EB844 /* AddReceiptViewController.m */,
+				6623F22A27B2A597009CFF54 /* AddProductViewController.h */,
+				6623F22B27B2A597009CFF54 /* AddProductViewController.m */,
+				6623F23027B2D1C5009CFF54 /* EditProductViewController.h */,
+				6623F23127B2D1C5009CFF54 /* EditProductViewController.m */,
+				662343A927B36D43002A29D4 /* ScannerViewController.h */,
+				662343AA27B36D43002A29D4 /* ScannerViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		664E922827B1210200EE53C1 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				664E920E27B0FAA700EE53C1 /* Main.storyboard */,
+				664E921327B0FAAA00EE53C1 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		664E922927B1210D00EE53C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6623F22D27B2D07A009CFF54 /* Product.h */,
+				6623F22E27B2D07A009CFF54 /* Product.m */,
+				662343A627B35F22002A29D4 /* Receipt.h */,
+				662343A727B35F22002A29D4 /* Receipt.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		664E922A27B1213100EE53C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				66F2368927B26D11007EB844 /* ProductTableViewCell.h */,
+				66F2368A27B26D11007EB844 /* ProductTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DB5437E760B448445B034464 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E98DD1C93FD3873AB97C372D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */,
+				C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 664E921B27B0FAAA00EE53C1 /* Build configuration list for PBXNativeTarget "ReceiptApp_OC" */;
 			buildPhases = (
+				1B47C4AE28CE21F951FDFA6A /* [CP] Check Pods Manifest.lock */,
 				664E91FE27B0FAA700EE53C1 /* Sources */,
 				664E91FF27B0FAA700EE53C1 /* Frameworks */,
 				664E920027B0FAA700EE53C1 /* Resources */,
+				D655D9DCEF123BDAE41FF01C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -134,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664E921527B0FAAA00EE53C1 /* LaunchScreen.storyboard in Resources */,
+				664E922C27B127E500EE53C1 /* GoogleService-Info.plist in Resources */,
 				664E921227B0FAAA00EE53C1 /* Assets.xcassets in Resources */,
 				664E921027B0FAA700EE53C1 /* Main.storyboard in Resources */,
 			);
@@ -141,15 +248,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B47C4AE28CE21F951FDFA6A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReceiptApp_OC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D655D9DCEF123BDAE41FF01C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		664E91FE27B0FAA700EE53C1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				664E920D27B0FAA700EE53C1 /* ViewController.m in Sources */,
 				664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */,
+				6623F22F27B2D07A009CFF54 /* Product.m in Sources */,
+				6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */,
+				6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */,
+				66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */,
+				664E922627B120DC00EE53C1 /* SignUpViewController.m in Sources */,
 				664E921827B0FAAA00EE53C1 /* main.m in Sources */,
+				662343AB27B36D43002A29D4 /* ScannerViewController.m in Sources */,
 				664E920A27B0FAA700EE53C1 /* SceneDelegate.m in Sources */,
+				662343A827B35F22002A29D4 /* Receipt.m in Sources */,
+				66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */,
+				660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */,
+				664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +447,7 @@
 		};
 		664E921C27B0FAAA00EE53C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -297,6 +456,7 @@
 				DEVELOPMENT_TEAM = 6AM223RC6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReceiptApp_OC/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -310,12 +470,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tsaisi7.ReceiptApp-OC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		664E921D27B0FAAA00EE53C1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,6 +485,7 @@
 				DEVELOPMENT_TEAM = 6AM223RC6B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ReceiptApp_OC/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -337,7 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tsaisi7.ReceiptApp-OC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
