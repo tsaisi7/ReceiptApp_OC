@@ -7,6 +7,7 @@
 
 #import "ShowReceiptDetailViewController.h"
 #import "ShowProductTableViewCell.h"
+#import "AddReceiptViewController.h"
 @import Firebase;
 
 @interface ShowReceiptDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -80,7 +81,21 @@ FIRDocumentReference *ref4;
             }
         }
     }];
-    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqual:@"editReceipt"]){
+        AddReceiptViewController *addReceiptViewController = (AddReceiptViewController*)segue.destinationViewController;
+        addReceiptViewController.storeName = receipt[0];
+        addReceiptViewController.receipt2Number = receipt[1];
+        addReceiptViewController.receipt8Number = receipt[2];
+        addReceiptViewController.year = receipt[3];
+        addReceiptViewController.month = receipt[4];
+        addReceiptViewController.day = receipt[5];
+        addReceiptViewController.totalExpense = receipt[6];
+        addReceiptViewController.products_add = products2;
+
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

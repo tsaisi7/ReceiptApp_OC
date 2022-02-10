@@ -32,6 +32,7 @@ NSMutableArray * products;
     products = [NSMutableArray array];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.storeNameTextField.text = self.storeName;
     self.yearTextField.text = self.year;
     self.monthTextField.text = self.month;
     self.dayTextField.text = self.day;
@@ -100,6 +101,10 @@ NSMutableArray * products;
         }
     }
 };
+
+- (IBAction)editReceipt:(id)sender{
+    
+}
 
 - (void)addProduct:(struct Product *)product{
     struct Product product_back;
