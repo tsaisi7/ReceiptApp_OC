@@ -102,7 +102,7 @@ FIRDocumentReference *ref2;
     NSString *stringValue = readableObject.stringValue;
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     NSLog(@"%@",stringValue);
-    NSString *regex = @"[A-Z][A-Z][0-9]{19}[A-F0-9]{16}";
+    NSString *regex = @"[A-Z][A-Z][0-9]{19}[a-fA-F0-9]{16}";
     NSRange range = [stringValue rangeOfString:regex options:NSRegularExpressionSearch];
     if (range.location == NSNotFound) {
         [self alertTitle:@"抱歉" alerMessgae:@"無法識別"];
@@ -110,8 +110,14 @@ FIRDocumentReference *ref2;
     }
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"掃描成功" message:[[NSString alloc] initWithFormat:@"發票號碼：%@-%@",[stringValue substringWithRange:NSMakeRange(0, 2)],[stringValue substringWithRange:NSMakeRange(2, 8)]] preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"直接儲存" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
         NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",[stringValue substringWithRange:NSMakeRange(0, 2)],[stringValue substringWithRange:NSMakeRange(2, 8)]];
-
+        
+        NSScanner *scanner = [NSScanner scannerWithString:[stringValue substringWithRange:NSMakeRange(29, 8)]];
+        unsigned int outValue;
+        [scanner scanHexInt:&outValue];
+        NSString *totalExpString = [[NSString alloc] initWithFormat:@"%d",outValue];
+        
         NSDictionary *receiptData = @{
           @"storeName": @"",
           @"receipt2Number": [stringValue substringWithRange:NSMakeRange(0, 2)],
@@ -119,6 +125,7 @@ FIRDocumentReference *ref2;
           @"year": [stringValue substringWithRange:NSMakeRange(10, 3)],
           @"month": [stringValue substringWithRange:NSMakeRange(13, 2)],
           @"day": [stringValue substringWithRange:NSMakeRange(15, 2)],
+          @"totalExpense": totalExpString
         };
 
         [[[ref2 collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {

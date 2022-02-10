@@ -8,6 +8,7 @@
 #import "ShowReceiptViewController.h"
 #import "Receipt.h"
 #import "ReceiptTableViewCell.h"
+#import "ShowReceiptDetailViewController.h"
 @import Firebase;
 
 @interface ShowReceiptViewController ()  <UITableViewDelegate, UITableViewDataSource>
@@ -19,22 +20,23 @@
 FIRUser *user3;
 FIRDocumentReference *ref3;
 NSMutableArray *receipts;
-NSInteger *totalExp = 0;
+NSInteger totalExp = 0;
 NSMutableArray *dates;
 NSDate *now;
-NSInteger *year;
-NSInteger *month;
-NSInteger *day;
+NSInteger year;
+NSInteger month;
+NSInteger day;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     receipts = [[NSMutableArray alloc]init];
     now = [NSDate date];
-    year = (NSInteger *)[[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:now];
-    //    NSLog(@"====YEAR=== %ld",(long)year);
-    month = (NSInteger *)[[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:now];
-    day = (NSInteger *)[[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:now];
+    year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:now];
+    NSLog(@"====YEAR=== %ld",year);
+    month = [[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:now];
+    NSLog(@"====Month=== %ld",month);
+    day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:now];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -45,15 +47,35 @@ NSInteger *day;
     [self readDateWithYear:year month:month day:day];
 }
 
-- (void)readDateWithYear:(NSInteger*)year month:(NSInteger*) month day:(NSInteger*) day{
-    NSString *yearStr = [[NSString alloc]initWithFormat:@"%ld",(long)year-1911];
+- (IBAction)nextMonth:(id)sender{
+    if (month != 12){
+        month = month + 1;
+        [self readDateWithYear:year month:month day:day];
+    }else{
+        year = year + 1;
+        month = 1;
+        [self readDateWithYear:year month:month day:day];
+
+    }
+}
+
+- (IBAction)lastMonth:(id)sender{
+    if (month != 1){
+        month = month - 1;
+        [self readDateWithYear:year month:month day:day];
+
+    }else{
+        year = year - 1;
+        month =  12;
+        [self readDateWithYear:year month:month day:day];
+    }
+}
+
+- (void)readDateWithYear:(NSInteger)year month:(NSInteger) month day:(NSInteger) day{
+    NSString *yearStr = [[NSString alloc]initWithFormat:@"%ld",year-1911];
     NSString *monthStr;
-    monthStr = (long)month < 10 ? [[NSString alloc]initWithFormat:@"0%ld",(long)month] : [[NSString alloc]initWithFormat:@"%ld",(long)month];
-//    NSString *dayStr = [[NSString alloc]initWithFormat:@"%ld",(long)day];
-//    NSLog(@"====Year=== %@", yearStr);
-//    NSLog(@"====Month=== %@", monthStr);
-//    NSLog(@"====Day=== %@", dayStr);
-    [[[[ref3 collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:@"01"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    monthStr = month < 10 ? [[NSString alloc]initWithFormat:@"0%ld",month] : [[NSString alloc]initWithFormat:@"%ld",month];
+    [[[[ref3 collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         if (error != nil){
             NSLog(@"ERROR");
             return;
@@ -63,12 +85,19 @@ NSInteger *day;
             totalExp = 0;
             self.dateLabel.text = [[NSString alloc]initWithFormat:@"民國 %@ 年 %@ 月",yearStr,monthStr];
             NSLog(@"----------documents.count %lu", (unsigned long)snapshot.documents.count);
+            NSLog(@"====receipt count:%lu",(unsigned long)receipts.count);
+            [self.tableView reloadData];
+            NSLog(@"receipt count:  %lu",(unsigned long)receipts.count);
+            self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)receipts.count];
+            self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)totalExp];
+            
             for (FIRDocumentSnapshot *document in snapshot.documents){
+                NSLog(@"-=-=-=-=%@", document.documentID);
                 NSString *storeName = document.data[@"storeName"];
                 storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
                 NSString *totalExpense = document.data[@"totalExpense"];
                 totalExpense = [totalExpense isEqual:@""] ? @"尚未輸入金額" : totalExpense;
-                NSMutableArray *receiptArray = [NSMutableArray arrayWithCapacity:7];
+                NSMutableArray *receiptArray = [NSMutableArray arrayWithCapacity:8];
                 receiptArray[0] = storeName;
                 receiptArray[1] = document.data[@"receipt2Number"];
                 receiptArray[2] = document.data[@"receipt8Number"];
@@ -76,6 +105,7 @@ NSInteger *day;
                 receiptArray[4] = document.data[@"month"];
                 receiptArray[5] = document.data[@"day"];
                 receiptArray[6] = totalExpense;
+                receiptArray[7] = document.documentID;
 
                 if (receiptArray != nil){
                     [receipts addObject: receiptArray];
@@ -95,13 +125,13 @@ NSInteger *day;
 //                [receiptVaule getValue:&receipt];
 //                [receipts addObject:receiptVaule];
                 
-//                if (![totalExpense isEqual:@"尚未輸入金額"]){
-//                    NSLog(@"1receipt totalExp:  %lu",(unsigned long)totalExp);
-//                    NSLog(@"2receipt totalExpense:  %lu",(unsigned long)[totalExpense intValue]);
-//                    totalExp = totalExp + [totalExpense intValue];
-//                    NSLog(@"3receipt totalExp:  %lu",(unsigned long)totalExp);
-//
-//                }
+                if (![totalExpense isEqual:@"尚未輸入金額"]){
+                    NSLog(@"1receipt totalExp:  %ld",totalExp);
+                    NSLog(@"2receipt totalExpense:  %lu",(unsigned long)[totalExpense intValue]);
+                    totalExp = totalExp + [totalExpense intValue];
+                    NSLog(@"3receipt totalExp:  %lu",(unsigned long)totalExp);
+
+                }
                 
                 NSLog(@"====receipt count:%lu",(unsigned long)receipts.count);
                 [self.tableView reloadData];
@@ -112,6 +142,16 @@ NSInteger *day;
             
         }
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqual: @"showDetail"]){
+        ShowReceiptDetailViewController *showReceiptDetailViewController = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        showReceiptDetailViewController.receiptID = receipts[indexPath.row][7];
+        NSLog(@"receiptID======>%@",receipts[indexPath.row][7]);
+        
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -130,6 +170,30 @@ NSInteger *day;
     cell.totalExpenseLabel.text = receipt[6];
     cell.dateLabel.text = [[NSString alloc]initWithFormat:@"%@/%@",receipt[4],receipt[5]];
     return cell;
+}
+
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        NSMutableArray *receipt = [receipts objectAtIndex:indexPath.row];
+        [[[ref3 collectionWithPath:@"Receipts"]documentWithPath:receipt[7]]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+            if (error != nil){
+                return;
+            }
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票刪除成功" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            [alert addAction:defaultAction];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+        completionHandler(YES);
+    }];
+    deleteAction.image = [UIImage systemImageNamed:@"trash"];
+    deleteAction.backgroundColor = UIColor.systemRedColor;
+    UISwipeActionsConfiguration *configuration = [UISwipeActionsConfiguration configurationWithActions:@[deleteAction]];
+    configuration.performsFirstActionWithFullSwipe = NO;
+    return configuration;
 }
 
 @end

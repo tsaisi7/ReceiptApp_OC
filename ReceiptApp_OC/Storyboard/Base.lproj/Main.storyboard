@@ -501,6 +501,9 @@
                                         <buttonConfiguration key="configuration" style="tinted" title="儲存發票">
                                             <fontDescription key="titleFontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="20"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="saveReceipt:" destination="bOE-8z-nxg" eventType="touchDown" id="kFp-xA-dBZ"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Kwd-ra-KqM">
                                         <rect key="frame" x="24" y="232" width="318" height="31"/>
@@ -754,6 +757,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="發票資訊" id="e5n-DM-QMI"/>
+                    <connections>
+                        <outlet property="dayTextField" destination="Wib-tw-w5k" id="Swu-A1-OT2"/>
+                        <outlet property="monthTextField" destination="U2L-PX-b3S" id="gp9-I5-ZCa"/>
+                        <outlet property="receipt2NumberTextField" destination="35h-8Z-ubc" id="sFw-oW-9gY"/>
+                        <outlet property="receipt8NumberTextField" destination="2l3-ek-8pn" id="CGG-NQ-Y1o"/>
+                        <outlet property="storeNameTextField" destination="erf-Hi-dYT" id="34e-jn-rnw"/>
+                        <outlet property="tableView" destination="rg6-nU-21d" id="T5d-Po-30h"/>
+                        <outlet property="totalExpenseTextField" destination="MEd-2U-Rl8" id="8Ox-kc-IVD"/>
+                        <outlet property="yearTextField" destination="y6Z-yL-I0y" id="8Ho-63-JFh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfK-NL-xnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1086,6 +1099,9 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="45.333333333333336" height="30.666666666666668"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="arrow.left.circle" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="lastMonth:" destination="fQK-bU-ql3" eventType="touchDown" id="E1J-qZ-KWR"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民國110年11月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-o4-P5d">
                                                             <rect key="frame" x="50.333333333333343" y="0.0" width="116" height="30.666666666666668"/>
@@ -1097,6 +1113,9 @@
                                                             <rect key="frame" x="171.33333333333334" y="0.0" width="45.333333333333343" height="30.666666666666668"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="arrow.right.to.line.circle" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="nextMonth:" destination="fQK-bU-ql3" eventType="touchDown" id="eR2-wt-FfZ"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
@@ -1263,7 +1282,7 @@
                                                     <outlet property="receipt8NumberLabel" destination="68F-Bp-IC8" id="AVZ-1z-JTO"/>
                                                     <outlet property="storeNameLabel" destination="Hyu-cF-qTs" id="KrJ-Zc-mBC"/>
                                                     <outlet property="totalExpenseLabel" destination="qk3-su-Bd1" id="a1Q-Vj-XPE"/>
-                                                    <segue destination="9q0-YQ-syM" kind="show" id="z68-ey-hp4"/>
+                                                    <segue destination="9q0-YQ-syM" kind="show" identifier="showDetail" id="z68-ey-hp4"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1334,7 +1353,7 @@
         <!--發票資訊-->
         <scene sceneID="fJc-Oh-7ea">
             <objects>
-                <viewController id="9q0-YQ-syM" customClass="ShowReceiptDetailViewController" customModule="ReceiptApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9q0-YQ-syM" customClass="ShowReceiptDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e0b-CH-T6s">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1360,7 +1379,7 @@
                                                 <rect key="frame" x="16" y="16" width="250" height="283.66666666666669"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="showProductCell" rowHeight="100" id="m2U-3n-uGL" customClass="ShowProductTableViewCell" customModule="ReceiptApp" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="showProductCell" rowHeight="100" id="m2U-3n-uGL" customClass="ShowProductTableViewCell">
                                                         <rect key="frame" x="0.0" y="44.666666030883789" width="250" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m2U-3n-uGL" id="7al-t6-MfF">
@@ -1371,13 +1390,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="250" height="100"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="招牌鍋貼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlj-sH-j3x">
-                                                                            <rect key="frame" x="15.999999999999993" y="16" width="97.333333333333314" height="28.666666666666671"/>
+                                                                            <rect key="frame" x="15.999999999999993" y="14.000000000000002" width="97.333333333333314" height="28.666666666666671"/>
                                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOH-LZ-WzG">
-                                                                            <rect key="frame" x="16" y="48.666666666666664" width="85.666666666666671" height="23.999999999999993"/>
+                                                                            <rect key="frame" x="16" y="46.666666666666664" width="85.666666666666671" height="23.999999999999993"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="售價：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgT-UF-URy">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="24"/>
@@ -1405,7 +1424,7 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sg0-v5-R2Z">
-                                                                            <rect key="frame" x="16" y="72.666666666666671" width="88.666666666666671" height="24"/>
+                                                                            <rect key="frame" x="16" y="70.666666666666671" width="89.666666666666671" height="24"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="數量：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62T-ni-JUD">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="24"/>
@@ -1414,7 +1433,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mh5-Qd-8UN">
-                                                                                    <rect key="frame" x="61.333333333333336" y="0.0" width="27.333333333333336" height="24"/>
+                                                                                    <rect key="frame" x="61.333333333333336" y="0.0" width="28.333333333333336" height="24"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXU-W4-OQj">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="12" height="24"/>
@@ -1423,8 +1442,8 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="個" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQC-Dc-rrT">
-                                                                                            <rect key="frame" x="12" y="0.0" width="15.333333333333336" height="24"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                                            <rect key="frame" x="11.999999999999998" y="0.0" width="16.333333333333329" height="24"/>
+                                                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
@@ -1433,7 +1452,7 @@
                                                                             </subviews>
                                                                         </stackView>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stt-Qi-QdS">
-                                                                            <rect key="frame" x="109.66666666666669" y="48.666666666666664" width="86" height="23.999999999999993"/>
+                                                                            <rect key="frame" x="109.66666666666669" y="46.666666666666664" width="86" height="23.999999999999993"/>
                                                                             <subviews>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="折扣：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qzW-UX-vx8">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="24"/>
@@ -1471,7 +1490,7 @@
                                                                         <constraint firstAttribute="height" constant="100" id="sxl-XJ-q8J"/>
                                                                         <constraint firstItem="stt-Qi-QdS" firstAttribute="top" secondItem="tlj-sH-j3x" secondAttribute="bottom" constant="4" id="u22-BJ-ueE"/>
                                                                         <constraint firstItem="sOH-LZ-WzG" firstAttribute="top" secondItem="tlj-sH-j3x" secondAttribute="bottom" constant="4" id="wFk-YH-UGR"/>
-                                                                        <constraint firstItem="tlj-sH-j3x" firstAttribute="top" secondItem="7WO-LA-0l7" secondAttribute="topMargin" constant="8" id="xaT-5r-pZx"/>
+                                                                        <constraint firstItem="tlj-sH-j3x" firstAttribute="top" secondItem="7WO-LA-0l7" secondAttribute="topMargin" constant="6" id="xaT-5r-pZx"/>
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
@@ -1482,6 +1501,12 @@
                                                                 <constraint firstAttribute="trailing" secondItem="7WO-LA-0l7" secondAttribute="trailing" id="zLp-oL-oC1"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="amountLabel" destination="Pye-zI-z3o" id="8Px-ER-KhM"/>
+                                                            <outlet property="countLabel" destination="CXU-W4-OQj" id="95f-PO-qJe"/>
+                                                            <outlet property="discountLabel" destination="STR-eG-6TI" id="1c6-y1-9g7"/>
+                                                            <outlet property="nameLabel" destination="tlj-sH-j3x" id="tqA-Qg-s62"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -1641,10 +1666,20 @@
                     <navigationItem key="navigationItem" title="發票資訊" id="RNv-YG-DK0">
                         <barButtonItem key="rightBarButtonItem" title="編輯" id="3bJ-QA-0P5"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dayLabel" destination="3IR-vp-IrE" id="UyX-GC-mdE"/>
+                        <outlet property="monthLabel" destination="nPR-U1-dT4" id="WHf-gC-Uo2"/>
+                        <outlet property="receipt2NumberLabel" destination="gZ4-aH-e5V" id="LSy-zn-Wuq"/>
+                        <outlet property="receipt8NumberLabel" destination="lj6-Wz-83a" id="F21-7t-DdO"/>
+                        <outlet property="storeNameLabel" destination="fHr-me-TWP" id="FxE-XH-qoF"/>
+                        <outlet property="tableView" destination="WB7-5W-8W3" id="Kmg-mH-btq"/>
+                        <outlet property="totalExpenseLabel" destination="AFQ-xM-sgO" id="ppk-UF-Goo"/>
+                        <outlet property="yearLabel" destination="dDX-6S-q3S" id="BZj-pu-gJ7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R65-Da-HwL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3942" y="-722"/>
+            <point key="canvasLocation" x="3941.5384615384614" y="-722.2748815165877"/>
         </scene>
     </scenes>
     <resources>

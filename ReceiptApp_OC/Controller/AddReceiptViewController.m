@@ -1,6 +1,6 @@
 //
 //  AddReceiptViewController.m
-//  ReceiptApp_OC
+//  ReceiptAppself.OC
 //
 //  Created by CAI SI LIOU on 2022/2/8.
 //
@@ -30,14 +30,14 @@ NSMutableArray * products;
     user = [FIRAuth auth].currentUser;
     ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user.uid];
     products = [NSMutableArray array];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _yearTextField.text = _year;
-    _monthTextField.text = _month;
-    _dayTextField.text = _day;
-    _receipt2NumberTextField.text = _receipt2Number;
-    _receipt8NumberTextField.text = _receipt8Number;
-    _totalExpenseTextField.text = _totalExpense;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.yearTextField.text = self.year;
+    self.monthTextField.text = self.month;
+    self.dayTextField.text = self.day;
+    self.receipt2NumberTextField.text = self.receipt2Number;
+    self.receipt8NumberTextField.text = self.receipt8Number;
+    self.totalExpenseTextField.text = self.totalExpense;
     
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
@@ -50,18 +50,18 @@ NSMutableArray * products;
 // 收起鍵盤
 
 - (IBAction)saveReceipt:(id)sender{
-    if (![_receipt2NumberTextField.text isEqual:@""] && ![_receipt8NumberTextField.text isEqual:@""] && ![_yearTextField.text isEqual:@""] && ![_monthTextField.text isEqual:@""] && ![_dayTextField.text isEqual:@""] && ![_storeNameTextField.text isEqual:nil] && ![_receipt2NumberTextField.text isEqual:nil] && ![_receipt8NumberTextField.text isEqual:nil] && ![_yearTextField.text isEqual:nil] && ![_monthTextField.text isEqual:nil] && ![_dayTextField.text isEqual:nil] && ![_totalExpenseTextField.text isEqual:nil]){
+    if (![self.receipt2NumberTextField.text isEqual:@""] && ![self.receipt8NumberTextField.text isEqual:@""] && ![self.yearTextField.text isEqual:@""] && ![self.monthTextField.text isEqual:@""] && ![self.dayTextField.text isEqual:@""] && ![self.storeNameTextField.text isEqual:nil] && ![self.receipt2NumberTextField.text isEqual:nil] && ![self.receipt8NumberTextField.text isEqual:nil] && ![self.yearTextField.text isEqual:nil] && ![self.monthTextField.text isEqual:nil] && ![self.dayTextField.text isEqual:nil] && ![self.totalExpenseTextField.text isEqual:nil]){
         
-        NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",_receipt2NumberTextField.text,_receipt8NumberTextField.text];
+        NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",self.receipt2NumberTextField.text,self.receipt8NumberTextField.text];
         
         NSDictionary *receiptData = @{
-          @"storeName": _storeNameTextField.text,
-          @"receipt2Number": _receipt2NumberTextField.text,
-          @"receipt8Number": _receipt8NumberTextField.text,
-          @"year": _yearTextField.text,
-          @"month": _monthTextField.text,
-          @"day": _dayTextField.text,
-          @"totoalExpense": _totalExpenseTextField.text
+          @"storeName": self.storeNameTextField.text,
+          @"receipt2Number": self.receipt2NumberTextField.text,
+          @"receipt8Number": self.receipt8NumberTextField.text,
+          @"year": self.yearTextField.text,
+          @"month": self.monthTextField.text,
+          @"day": self.dayTextField.text,
+          @"totalExpense": self.totalExpenseTextField.text
         };
         
         [[[ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
@@ -112,7 +112,7 @@ NSMutableArray * products;
     [products addObject:value];
     NSLog(@"----cout:%lu", (unsigned long)[products count]);
     NSLog(@"----products:%@", products);
-    [_tableView reloadData];
+    [self.tableView reloadData];
 
 }
 // 新增商品 實作AddProductDelegate中的方法
@@ -126,7 +126,7 @@ NSMutableArray * products;
     product_back.productID = product->productID;
     NSValue *value = [NSValue valueWithBytes:&product_back objCType:@encode(struct Product)];
     products[indexPath.row] = value;
-    [_tableView reloadData];
+    [self.tableView reloadData];
 }
 // 修改商品 實作EditProductDelegate中的方法
 
@@ -139,7 +139,7 @@ NSMutableArray * products;
     if([segue.identifier isEqual: @"editProduct"]){
         EditProductViewController *editProductViewController = segue.destinationViewController;
         editProductViewController.delegate = self;
-        NSIndexPath *indexPath = [_tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSValue *value = [products objectAtIndex:indexPath.row];
         struct Product product;
         [value getValue:&product];
@@ -173,7 +173,7 @@ NSMutableArray * products;
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         [products removeObjectAtIndex:indexPath.row];
-        [self->_tableView reloadData];
+        [self.tableView reloadData];
         completionHandler(YES);
     }];
     deleteAction.image = [UIImage systemImageNamed:@"trash"];
