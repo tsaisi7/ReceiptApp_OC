@@ -6,9 +6,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@import Firebase;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+//@property (weak, nonatomic) FIRUser *firUser;
+//@property (weak, nonatomic) FIRDocumentReference *firRef;
 
 @end
 

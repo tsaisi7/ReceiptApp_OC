@@ -13,6 +13,9 @@
 		6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F22B27B2A597009CFF54 /* AddProductViewController.m */; };
 		6623F22F27B2D07A009CFF54 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F22E27B2D07A009CFF54 /* Product.m */; };
 		6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F23127B2D1C5009CFF54 /* EditProductViewController.m */; };
+		663C6CFF27B4E9510073C1CB /* ShowReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663C6CFE27B4E9510073C1CB /* ShowReceiptViewController.m */; };
+		663C6D0227B4EE0E0073C1CB /* ShowRecieptDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 663C6D0127B4EE0E0073C1CB /* ShowRecieptDetialViewController.m */; };
+		663C6D0527B506CC0073C1CB /* ReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 663C6D0427B506CC0073C1CB /* ReceiptTableViewCell.m */; };
 		664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E920627B0FAA700EE53C1 /* AppDelegate.m */; };
 		664E920A27B0FAA700EE53C1 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E920927B0FAA700EE53C1 /* SceneDelegate.m */; };
 		664E921027B0FAA700EE53C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 664E920E27B0FAA700EE53C1 /* Main.storyboard */; };
@@ -42,6 +45,12 @@
 		6623F22E27B2D07A009CFF54 /* Product.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 		6623F23027B2D1C5009CFF54 /* EditProductViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProductViewController.h; sourceTree = "<group>"; };
 		6623F23127B2D1C5009CFF54 /* EditProductViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProductViewController.m; sourceTree = "<group>"; };
+		663C6CFD27B4E9510073C1CB /* ShowReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowReceiptViewController.h; sourceTree = "<group>"; };
+		663C6CFE27B4E9510073C1CB /* ShowReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowReceiptViewController.m; sourceTree = "<group>"; };
+		663C6D0027B4EE0E0073C1CB /* ShowRecieptDetialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowRecieptDetialViewController.h; sourceTree = "<group>"; };
+		663C6D0127B4EE0E0073C1CB /* ShowRecieptDetialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowRecieptDetialViewController.m; sourceTree = "<group>"; };
+		663C6D0327B506CC0073C1CB /* ReceiptTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiptTableViewCell.h; sourceTree = "<group>"; };
+		663C6D0427B506CC0073C1CB /* ReceiptTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiptTableViewCell.m; sourceTree = "<group>"; };
 		664E920227B0FAA700EE53C1 /* ReceiptApp_OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReceiptApp_OC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		664E920527B0FAA700EE53C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		664E920627B0FAA700EE53C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -130,6 +139,10 @@
 				6623F23127B2D1C5009CFF54 /* EditProductViewController.m */,
 				662343A927B36D43002A29D4 /* ScannerViewController.h */,
 				662343AA27B36D43002A29D4 /* ScannerViewController.m */,
+				663C6CFD27B4E9510073C1CB /* ShowReceiptViewController.h */,
+				663C6CFE27B4E9510073C1CB /* ShowReceiptViewController.m */,
+				663C6D0027B4EE0E0073C1CB /* ShowRecieptDetialViewController.h */,
+				663C6D0127B4EE0E0073C1CB /* ShowRecieptDetialViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -159,6 +172,8 @@
 			children = (
 				66F2368927B26D11007EB844 /* ProductTableViewCell.h */,
 				66F2368A27B26D11007EB844 /* ProductTableViewCell.m */,
+				663C6D0327B506CC0073C1CB /* ReceiptTableViewCell.h */,
+				663C6D0427B506CC0073C1CB /* ReceiptTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +310,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				663C6D0527B506CC0073C1CB /* ReceiptTableViewCell.m in Sources */,
+				663C6D0227B4EE0E0073C1CB /* ShowRecieptDetialViewController.m in Sources */,
+				663C6CFF27B4E9510073C1CB /* ShowReceiptViewController.m in Sources */,
 				664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */,
 				6623F22F27B2D07A009CFF54 /* Product.m in Sources */,
 				6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */,

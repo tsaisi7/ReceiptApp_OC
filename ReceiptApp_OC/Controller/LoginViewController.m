@@ -15,8 +15,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
+}
+// 收起鍵盤
 
 - (void)alertTitle:(NSString*)title alerMessgae:(NSString*)message{
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -25,6 +32,7 @@
 
     [self presentViewController:alert animated:YES completion:nil];
 }
+// 實作一個 alertMessage的方法
 
 - (IBAction)login:(id)sender{
     if(_emailTextField.text != nil && ![_emailTextField.text  isEqual: @""] && _passwordTextField.text != nil && ![_passwordTextField.text isEqual: @""]){
@@ -36,7 +44,6 @@
             
             if (authResult != nil){
                 NSLog(@"%@ 登入成功", authResult.user.email);
-                [self alertTitle:@"歡迎" alerMessgae:@"登入成功"];
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UIViewController *home = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
                 [self presentViewController:home animated:YES completion:nil];
@@ -45,7 +52,7 @@
     }else{
         [self alertTitle:@"提醒" alerMessgae:@"請輸入完整資料"];
     }
-    
 }
+// 實作 login
 
 @end

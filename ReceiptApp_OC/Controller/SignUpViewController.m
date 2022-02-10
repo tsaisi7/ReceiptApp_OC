@@ -16,8 +16,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
+}
+// 收起鍵盤
+
+- (void)alertTitle:(NSString*)title alerMessgae:(NSString*)message{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+// 實作一個alert 方法
 
 - (IBAction)signUp:(id)sender {
     
@@ -25,10 +41,7 @@
         [[FIRAuth auth] createUserWithEmail:_emailTextField.text password:_passwordTextField.text completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
             if (error != nil){
                 NSLog(@"%@", error.localizedDescription);
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"錯誤" message:@"註冊失敗" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-                [alert addAction:defaultAction];
-                [self presentViewController:alert animated:YES completion:nil];
+                [self alertTitle:@"錯誤" alerMessgae:@"註冊失敗"];
             }
             
             if (authResult != nil){
@@ -46,22 +59,9 @@
             }
         }];
     }else{
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"請輸入完整資料" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        [self alertTitle:@"提醒" alerMessgae:@"請輸入完整資料"];
     }
-    
-    
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// 實作signUp
 
 @end

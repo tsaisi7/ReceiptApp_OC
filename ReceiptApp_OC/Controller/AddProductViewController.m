@@ -18,12 +18,21 @@ struct Product product;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
+}
+// 收起鍵盤
 
 - (IBAction)addProduct:(id)sender{
     if (![_nameTextField.text isEqual:@""] && ![_countTextField.text isEqual:@""] && ![_amountTextField.text isEqual:@""] && ![_discountTextField.text isEqual:@""] && ![_nameTextField.text isEqual:nil] && ![_countTextField.text isEqual:nil] && ![_amountTextField.text isEqual:nil] && ![_discountTextField.text isEqual:nil]){
-        product.name = _nameTextField.text;
+        NSLog(@"%@", self.nameTextField.text);
+        NSLog(@"%@", _nameTextField.text);
+        product.name = self.nameTextField.text;
         product.count = _countTextField.text;
         product.amount = _amountTextField.text;
         product.discount = _discountTextField.text;
@@ -32,5 +41,6 @@ struct Product product;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+// 新增商品
 
 @end

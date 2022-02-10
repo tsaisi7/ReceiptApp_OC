@@ -20,7 +20,15 @@
     // Do any additional setup after loading the view.
     _nameTextField.text = FIRAuth.auth.currentUser.displayName;
     _emailTextField.text = FIRAuth.auth.currentUser.email;
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
+
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
+}
+// 收起鍵盤
 
 - (IBAction)logOut:(id)sender{
     NSLog(@"LOGOUT");
@@ -31,13 +39,11 @@
         return;
     }
 
-
-    //我已經解決了
     //最開始我是直接用
     //AppDelegate *delgate = (AppDelegate*) UIApplication.sharedApplication.delegate;
     //delegate.window.rootViewController = login;
     //結果 Crash 原因為 AppDelegate 沒有window
-    //我查到的內容是 在iOS 13以後 window 已經被改到SceneDelegate，我的做法是自己在AppDelegate 實作window 然後取得rootVC，結果不會Crash 但也沒有反應
+    //查到的內容是 在iOS 13以後 window 已經被改到SceneDelegate，我的做法是自己在AppDelegate 實作window 然後取得rootVC，結果不會Crash 但也沒有反應
     //最後的寫法是 改成SceneDelegate
     //然後不能直接用sharedApplication 的delegate
     //而是sharedApplication.connectedScenes.allObjects.firstObject 的delegate
@@ -45,8 +51,9 @@
     LoginViewController *login = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     SceneDelegate *sceneDelgate = (SceneDelegate*) UIApplication.sharedApplication.connectedScenes.allObjects.firstObject.delegate;
     sceneDelgate.window.rootViewController = login;
-    
+    //之後可以嘗試 subView
 }
+//實作logOut
 
 - (IBAction)changeProfile:(id)sender{
     if (![_emailTextField.text isEqual: @""] && ![_nameTextField.text  isEqual: @""]){
@@ -75,5 +82,5 @@
         }
     }
 }
-
+//實作修改會員資料
 @end

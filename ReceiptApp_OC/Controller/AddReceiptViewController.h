@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) NSString *receipt2Number;
 @property (weak, nonatomic) NSString *receipt8Number;
 @property (weak, nonatomic) NSString *totalExpense;
+//@property (weak, nonatomic) NSMutableArray *products;
 
 @end
 

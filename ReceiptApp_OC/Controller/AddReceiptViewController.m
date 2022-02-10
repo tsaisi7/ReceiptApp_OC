@@ -11,7 +11,7 @@
 #import "EditProductViewController.h"
 #import "Product.h"
 #import "Receipt.h"
-
+@import Firebase;
 
 @interface AddReceiptViewController () <AddProductDelegate, EditProductDelegate>
 
@@ -20,16 +20,16 @@
 
 @implementation AddReceiptViewController
 
-NSMutableArray *products;
-NSMutableArray *receipts;
-
-
+FIRUser *user;
+FIRDocumentReference *ref;
+NSMutableArray * products;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    products = [NSMutableArray arrayWithCapacity:0];
-    receipts = [NSMutableArray arrayWithCapacity:0];
+    user = [FIRAuth auth].currentUser;
+    ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user.uid];
+    products = [NSMutableArray array];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _yearTextField.text = _year;
@@ -38,16 +38,66 @@ NSMutableArray *receipts;
     _receipt2NumberTextField.text = _receipt2Number;
     _receipt8NumberTextField.text = _receipt8Number;
     _totalExpenseTextField.text = _totalExpense;
+    
+    UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
 }
 
+-(void)keyboardHide:(UITapGestureRecognizer*)tap{
+    [self.view endEditing:YES];
+}
+// 收起鍵盤
+
 - (IBAction)saveReceipt:(id)sender{
-    if (![_storeNameTextField.text isEqual:@""] && ![_receipt2NumberTextField.text isEqual:@""] && ![_receipt8NumberTextField.text isEqual:@""] && ![_yearTextField.text isEqual:@""] && ![_monthTextField.text isEqual:@""] && ![_dayTextField.text isEqual:@""] && ![_totalExpenseTextField.text isEqual:@""] && ![_storeNameTextField.text isEqual:nil] && ![_receipt2NumberTextField.text isEqual:nil] && ![_receipt8NumberTextField.text isEqual:nil] && ![_yearTextField.text isEqual:nil] && ![_monthTextField.text isEqual:nil] && ![_dayTextField.text isEqual:nil] && ![_totalExpenseTextField.text isEqual:nil]){
+    if (![_receipt2NumberTextField.text isEqual:@""] && ![_receipt8NumberTextField.text isEqual:@""] && ![_yearTextField.text isEqual:@""] && ![_monthTextField.text isEqual:@""] && ![_dayTextField.text isEqual:@""] && ![_storeNameTextField.text isEqual:nil] && ![_receipt2NumberTextField.text isEqual:nil] && ![_receipt8NumberTextField.text isEqual:nil] && ![_yearTextField.text isEqual:nil] && ![_monthTextField.text isEqual:nil] && ![_dayTextField.text isEqual:nil] && ![_totalExpenseTextField.text isEqual:nil]){
         
-        struct Receipt receipt = {_storeNameTextField.text, _receipt2NumberTextField.text, _receipt8NumberTextField.text , _yearTextField.text, _monthTextField.text, _dayTextField.text, _totalExpenseTextField.text, products};
-        NSValue *value = [NSValue valueWithBytes:&receipt objCType:@encode(struct Receipt)];
-        [receipts addObject:value];
-        NSLog(@"%@",receipts[0]);
-        [self.navigationController popViewControllerAnimated:YES];
+        NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",_receipt2NumberTextField.text,_receipt8NumberTextField.text];
+        
+        NSDictionary *receiptData = @{
+          @"storeName": _storeNameTextField.text,
+          @"receipt2Number": _receipt2NumberTextField.text,
+          @"receipt8Number": _receipt8NumberTextField.text,
+          @"year": _yearTextField.text,
+          @"month": _monthTextField.text,
+          @"day": _dayTextField.text,
+          @"totoalExpense": _totalExpenseTextField.text
+        };
+        
+        [[[ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Error writing document: %@", error);
+                return;
+            } else {
+                NSLog(@"Receipt successfully uploaded");
+            }
+        }];
+        for (NSValue *product in products){
+            NSString *productID = [[NSUUID UUID] UUIDString];
+            struct Product product2;
+            [product getValue:&product2];
+            NSDictionary *productData = @{
+            @"name": product2.name,
+            @"count": product2.count,
+            @"amount": product2.amount,
+            @"discount": product2.discount
+        };
+        [[[[[ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] collectionWithPath:@"products"] documentWithPath:productID] setData:productData completion:^(NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Error writing document: %@", error);
+                return;
+            }else{
+                NSLog(@"Product successfully uploaded");
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票上傳成功" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }];
+                [alert addAction:defaultAction];
+                
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+        }
     }
 };
 
@@ -60,9 +110,12 @@ NSMutableArray *receipts;
     product_back.productID = product->productID;
     NSValue *value = [NSValue valueWithBytes:&product_back objCType:@encode(struct Product)];
     [products addObject:value];
+    NSLog(@"----cout:%lu", (unsigned long)[products count]);
+    NSLog(@"----products:%@", products);
     [_tableView reloadData];
 
 }
+// 新增商品 實作AddProductDelegate中的方法
 
 - (void)editProduct:(struct Product *)product and:(nonnull NSIndexPath *)indexPath{
     struct Product product_back;
@@ -75,27 +128,34 @@ NSMutableArray *receipts;
     products[indexPath.row] = value;
     [_tableView reloadData];
 }
+// 修改商品 實作EditProductDelegate中的方法
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"addProduct"]){
         AddProductViewController *addProductViewController = segue.destinationViewController;
         addProductViewController.delegate = self;
+        NSLog(@"-----TEST1");
     }
-    if([segue.identifier isEqual:@"editProduct"]){
+    if([segue.identifier isEqual: @"editProduct"]){
         EditProductViewController *editProductViewController = segue.destinationViewController;
         editProductViewController.delegate = self;
         NSIndexPath *indexPath = [_tableView indexPathForSelectedRow];
         NSValue *value = [products objectAtIndex:indexPath.row];
         struct Product product;
         [value getValue:&product];
+        NSLog(@"------%@",product.name);
         editProductViewController.product = product;
         editProductViewController.indexPath = indexPath;
     }
 }
+// segue 傳值
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"----cell count:%lu", (unsigned long)products.count);
     return products.count;
 }
+// 定義表格數
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ProductTableViewCell *cell = (ProductTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"productCell" forIndexPath: indexPath];
@@ -108,6 +168,7 @@ NSMutableArray *receipts;
     cell.discountTextField.text = product.discount;
     return cell;
 }
+// 定義表格內容
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
@@ -121,6 +182,7 @@ NSMutableArray *receipts;
     configuration.performsFirstActionWithFullSwipe = NO;
     return configuration;
 }
+// 實作刪除productCell
 
 @end
 
