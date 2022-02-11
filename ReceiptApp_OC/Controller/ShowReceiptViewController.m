@@ -19,7 +19,8 @@
 
 FIRUser *user3;
 FIRDocumentReference *ref3;
-NSMutableArray *receipts;
+
+//NSMutableArray *receipts;
 NSInteger totalExp = 0;
 NSMutableArray *dates;
 NSDate *now;
@@ -30,12 +31,10 @@ NSInteger day;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    receipts = [[NSMutableArray alloc]init];
+    self.receipts = [[NSMutableArray alloc]init];
     now = [NSDate date];
     year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:now];
-    NSLog(@"====YEAR=== %ld",year);
     month = [[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:now];
-    NSLog(@"====Month=== %ld",month);
     day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:now];
     
     self.tableView.delegate = self;
@@ -81,14 +80,14 @@ NSInteger day;
             return;
         }
         if (snapshot != nil){
-            receipts = [[NSMutableArray alloc]init];
+            self.receipts = [NSMutableArray array];
             totalExp = 0;
             self.dateLabel.text = [[NSString alloc]initWithFormat:@"民國 %@ 年 %@ 月",yearStr,monthStr];
             NSLog(@"----------documents.count %lu", (unsigned long)snapshot.documents.count);
-            NSLog(@"====receipt count:%lu",(unsigned long)receipts.count);
+            NSLog(@"====receipt count:%lu",self.receipts.count);
             [self.tableView reloadData];
-            NSLog(@"receipt count:  %lu",(unsigned long)receipts.count);
-            self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)receipts.count];
+            NSLog(@"receipt count:  %lu",(unsigned long)self.receipts.count);
+            self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
             self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)totalExp];
             
             for (FIRDocumentSnapshot *document in snapshot.documents){
@@ -97,33 +96,16 @@ NSInteger day;
                 storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
                 NSString *totalExpense = document.data[@"totalExpense"];
                 totalExpense = [totalExpense isEqual:@""] ? @"尚未輸入金額" : totalExpense;
-                NSMutableArray *receiptArray = [NSMutableArray arrayWithCapacity:8];
-                receiptArray[0] = storeName;
-                receiptArray[1] = document.data[@"receipt2Number"];
-                receiptArray[2] = document.data[@"receipt8Number"];
-                receiptArray[3] = document.data[@"year"];
-                receiptArray[4] = document.data[@"month"];
-                receiptArray[5] = document.data[@"day"];
-                receiptArray[6] = totalExpense;
-                receiptArray[7] = document.documentID;
-
-                if (receiptArray != nil){
-                    [receipts addObject: receiptArray];
-                }else{
-                    NSLog(@"receiptArray === nil");
-                }
-
-//                struct Receipt *receipt;
-//                receipt->storeName = storeName;
-//                receipt->receipt2Number = document.data[@"receipt2Number"];
-//                receipt->receipt8Number = document.data[@"receipt8Number"];
-//                receipt->year = document.data[@"year"];
-//                receipt->month = document.data[@"month"];
-//                receipt->day = document.data[@"day"];
-//                receipt->totalExpense = totalExpense;
-//                NSValue *receiptVaule;
-//                [receiptVaule getValue:&receipt];
-//                [receipts addObject:receiptVaule];
+                Receipt *receipt = [[Receipt alloc] init];
+                receipt.storeName = storeName;
+                receipt.receipt2Number = document.data[@"receipt2Number"];
+                receipt.receipt8Number = document.data[@"receipt8Number"];
+                receipt.year = document.data[@"year"];
+                receipt.month = document.data[@"month"];
+                receipt.day = document.data[@"day"];
+                receipt.totalExpense = totalExpense;
+                receipt.receiptID = document.documentID;
+                [self.receipts addObject: receipt];
                 
                 if (![totalExpense isEqual:@"尚未輸入金額"]){
                     NSLog(@"1receipt totalExp:  %ld",totalExp);
@@ -133,10 +115,10 @@ NSInteger day;
 
                 }
                 
-                NSLog(@"====receipt count:%lu",(unsigned long)receipts.count);
+                NSLog(@"====receipt count:%lu",(unsigned long)self.receipts.count);
                 [self.tableView reloadData];
-                NSLog(@"receipt count:  %lu",(unsigned long)receipts.count);
-                self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)receipts.count];
+                NSLog(@"receipt count:  %lu",(unsigned long)self.receipts.count);
+                self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
                 self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)totalExp];
             }
             
@@ -148,34 +130,35 @@ NSInteger day;
     if([segue.identifier isEqual: @"showDetail"]){
         ShowReceiptDetailViewController *showReceiptDetailViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        showReceiptDetailViewController.receiptID = receipts[indexPath.row][7];
-        NSLog(@"receiptID======>%@",receipts[indexPath.row][7]);
-        
+        Receipt *receipt = self.receipts[indexPath.row];
+        showReceiptDetailViewController.receiptID = receipt.receiptID;
+        NSLog(@"receiptID======>%@",receipt.receiptID);
+
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)receipts.count);
-    return receipts.count;
+    NSLog(@"----cell count:%lu", (unsigned long)self.receipts.count);
+    return self.receipts.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
     ReceiptTableViewCell *cell = (ReceiptTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"receiptCell" forIndexPath: indexPath];
-    NSMutableArray *receipt = [receipts objectAtIndex:indexPath.row];
+    Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
 
-    cell.storeNameLabel.text = receipt[0];
-    cell.receipt2NumberLabel.text = receipt[1];
-    cell.receipt8NumberLabel.text = receipt[2];
-    cell.totalExpenseLabel.text = receipt[6];
-    cell.dateLabel.text = [[NSString alloc]initWithFormat:@"%@/%@",receipt[4],receipt[5]];
+    cell.storeNameLabel.text = receipt.storeName;
+    cell.receipt2NumberLabel.text = receipt.receipt2Number;
+    cell.receipt8NumberLabel.text = receipt.receipt8Number;
+    cell.totalExpenseLabel.text = receipt.totalExpense;
+    cell.dateLabel.text = [[NSString alloc]initWithFormat:@"%@/%@",receipt.month,receipt.day];
     return cell;
 }
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
-        NSMutableArray *receipt = [receipts objectAtIndex:indexPath.row];
-        [[[ref3 collectionWithPath:@"Receipts"]documentWithPath:receipt[7]]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+        Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
+        [[[ref3 collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
             if (error != nil){
                 return;
             }

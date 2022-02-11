@@ -11,12 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ShowReceiptViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UIButton *leftButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightButton;
-@property (weak, nonatomic) IBOutlet UILabel *totalExpenseLabel;
-@property (weak, nonatomic) IBOutlet UILabel *totalCountLabel;
+@property (weak, nonatomic) IBOutlet UITableView* tableView;
+@property (weak, nonatomic) IBOutlet UILabel* dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton* leftButton;
+@property (weak, nonatomic) IBOutlet UIButton* rightButton;
+@property (weak, nonatomic) IBOutlet UILabel* totalExpenseLabel;
+@property (weak, nonatomic) IBOutlet UILabel* totalCountLabel;
+@property NSMutableArray* receipts;
 
 @end
 

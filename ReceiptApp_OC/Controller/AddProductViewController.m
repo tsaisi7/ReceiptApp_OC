@@ -14,10 +14,11 @@
 
 @implementation AddProductViewController
 
-struct Product product;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.product = [[Product alloc]init];
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -30,14 +31,11 @@ struct Product product;
 
 - (IBAction)addProduct:(id)sender{
     if (![_nameTextField.text isEqual:@""] && ![_countTextField.text isEqual:@""] && ![_amountTextField.text isEqual:@""] && ![_discountTextField.text isEqual:@""] && ![_nameTextField.text isEqual:nil] && ![_countTextField.text isEqual:nil] && ![_amountTextField.text isEqual:nil] && ![_discountTextField.text isEqual:nil]){
-        NSLog(@"%@", self.nameTextField.text);
-        NSLog(@"%@", _nameTextField.text);
-        product.name = self.nameTextField.text;
-        product.count = _countTextField.text;
-        product.amount = _amountTextField.text;
-        product.discount = _discountTextField.text;
-        product.productID = @"";
-        [self.delegate addProduct:&product];
+        self.product.name = self.nameTextField.text;
+        self.product.count = self.countTextField.text;
+        self.product.amount= self.amountTextField.text;
+        self.product.discount = self.discountTextField.text;
+        [self.delegate addProduct: self.product];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

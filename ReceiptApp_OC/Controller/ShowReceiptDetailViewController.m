@@ -8,6 +8,9 @@
 #import "ShowReceiptDetailViewController.h"
 #import "ShowProductTableViewCell.h"
 #import "AddReceiptViewController.h"
+#import "Receipt.h"
+#import "Product.h"
+
 @import Firebase;
 
 @interface ShowReceiptDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -16,8 +19,6 @@
 
 @implementation ShowReceiptDetailViewController
 
-NSMutableArray *receipt;
-NSMutableArray *products2;
 FIRUser *user4;
 FIRDocumentReference *ref4;
 
@@ -26,8 +27,8 @@ FIRDocumentReference *ref4;
     // Do any additional setup after loading the view.
     user4 = [FIRAuth auth].currentUser;
     ref4 = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user4.uid];
-    receipt = [NSMutableArray arrayWithCapacity:8];
-    products2 = [NSMutableArray array];
+    self.receipt = [[Receipt alloc]init];
+    self.products = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self readData];
@@ -45,7 +46,6 @@ FIRDocumentReference *ref4;
             storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
             NSString *totalExpense = snapshot.data[@"totalExpense"];
             totalExpense = [totalExpense isEqual:@""] ? @"尚未輸入金額" : totalExpense;
-//            self.storeNameLabel.text = @"TEST";
             self.storeNameLabel.text = storeName;
             self.receipt2NumberLabel.text = snapshot.data[@"receipt2Number"];
             self.receipt8NumberLabel.text = snapshot.data[@"receipt8Number"];
@@ -54,14 +54,14 @@ FIRDocumentReference *ref4;
             self.dayLabel.text = snapshot.data[@"day"];
             self.totalExpenseLabel.text = totalExpense;
             
-            receipt[0] = storeName;
-            receipt[1] = snapshot.data[@"receipt2Number"];
-            receipt[2] = snapshot.data[@"receipt8Number"];
-            receipt[3] = snapshot.data[@"year"];
-            receipt[4] = snapshot.data[@"month"];
-            receipt[5] = snapshot.data[@"day"];
-            receipt[6] = totalExpense;
-            receipt[7] = snapshot.documentID;
+            self.receipt.storeName = storeName;
+            self.receipt.receipt2Number = snapshot.data[@"receipt2Number"];
+            self.receipt.receipt8Number = snapshot.data[@"receipt8Number"];
+            self.receipt.year = snapshot.data[@"year"];
+            self.receipt.month = snapshot.data[@"month"];
+            self.receipt.day = snapshot.data[@"day"];
+            self.receipt.totalExpense = totalExpense;
+            self.receipt.receiptID = snapshot.documentID;
         }
     }];
     [[[[ref4 collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
@@ -70,13 +70,16 @@ FIRDocumentReference *ref4;
             return;
         }
         if (snapshot != nil){
+            [self.products removeAllObjects];
             for (FIRDocumentSnapshot *document in snapshot.documents){
-                NSMutableArray *product = [NSMutableArray array];
-                product[0] = document.data[@"name"];
-                product[1] = document.data[@"count"];
-                product[2] = document.data[@"amount"];
-                product[3] = document.data[@"discount"];
-                [products2 addObject:product];
+                Product *product = [[Product alloc]init];
+                product.name = document.data[@"name"];
+                product.count = document.data[@"count"];
+                product.amount = document.data[@"amount"];
+                product.discount = document.data[@"discount"];
+                product.productID = document.documentID;
+                [self.products addObject:product];
+
                 [self.tableView reloadData];
             }
         }
@@ -86,30 +89,31 @@ FIRDocumentReference *ref4;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqual:@"editReceipt"]){
         AddReceiptViewController *addReceiptViewController = (AddReceiptViewController*)segue.destinationViewController;
-        addReceiptViewController.storeName = receipt[0];
-        addReceiptViewController.receipt2Number = receipt[1];
-        addReceiptViewController.receipt8Number = receipt[2];
-        addReceiptViewController.year = receipt[3];
-        addReceiptViewController.month = receipt[4];
-        addReceiptViewController.day = receipt[5];
-        addReceiptViewController.totalExpense = receipt[6];
-        addReceiptViewController.products_add = products2;
+        addReceiptViewController.storeName = self.receipt.storeName;
+        addReceiptViewController.receipt2Number = self.receipt.receipt2Number;
+        addReceiptViewController.receipt8Number = self.receipt.receipt8Number;
+        addReceiptViewController.year = self.receipt.year;
+        addReceiptViewController.month = self.receipt.month;
+        addReceiptViewController.day = self.receipt.day;
+        addReceiptViewController.totalExpense = self.receipt.totalExpense;
+        addReceiptViewController.products_add = self.products;
+        addReceiptViewController.receiptID = self.receiptID;
 
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)products2.count);
-    return products2.count;
+    NSLog(@"----cell count:%lu", (unsigned long)self.products.count);
+    return self.products.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ShowProductTableViewCell *cell = (ShowProductTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"showProductCell" forIndexPath:indexPath];
-    NSMutableArray *product = [products2 objectAtIndex:indexPath.row];
-    cell.nameLabel.text = product[0];
-    cell.countLabel.text = product[1];
-    cell.amountLabel.text = product[2];
-    cell.discountLabel.text = product[3];
+    Product *product = [self.products objectAtIndex:indexPath.row];
+    cell.nameLabel.text = product.name;
+    cell.countLabel.text = product.count;
+    cell.amountLabel.text = product.amount;
+    cell.discountLabel.text = product.discount;
     return cell;
 };
 

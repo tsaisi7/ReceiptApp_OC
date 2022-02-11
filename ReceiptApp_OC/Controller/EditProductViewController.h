@@ -12,19 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EditProductDelegate <NSObject>
 
--(void) editProduct: (struct Product*) product and: (NSIndexPath*) indexPath;
+-(void) editProduct: (Product*) product and: (NSIndexPath*) indexPath;
 
 @end
 
 @interface EditProductViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *countTextField;
-@property (weak, nonatomic) IBOutlet UITextField *amountTextField;
-@property (weak, nonatomic) IBOutlet UITextField *discountTextField;
+@property (weak, nonatomic) IBOutlet UITextField* nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField* countTextField;
+@property (weak, nonatomic) IBOutlet UITextField* amountTextField;
+@property (weak, nonatomic) IBOutlet UITextField* discountTextField;
 @property (weak, nonatomic) id<EditProductDelegate> delegate;
-@property struct Product product;
-@property (weak, nonatomic) NSIndexPath *indexPath;
+@property Product* product;
+@property (weak, nonatomic) NSIndexPath* indexPath;
 @end
 
 NS_ASSUME_NONNULL_END

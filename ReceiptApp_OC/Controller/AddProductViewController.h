@@ -12,17 +12,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol AddProductDelegate <NSObject>
 
--(void) addProduct: (struct Product*) product;
+-(void) addProduct: (Product*) product;
 
 @end
 
 @interface AddProductViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *countTextField;
-@property (weak, nonatomic) IBOutlet UITextField *amountTextField;
-@property (weak, nonatomic) IBOutlet UITextField *discountTextField;
+@property (weak, nonatomic) IBOutlet UITextField* nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField* countTextField;
+@property (weak, nonatomic) IBOutlet UITextField* amountTextField;
+@property (weak, nonatomic) IBOutlet UITextField* discountTextField;
 @property (weak, nonatomic) id<AddProductDelegate> delegate;
+@property Product* product;
 
 @end
 

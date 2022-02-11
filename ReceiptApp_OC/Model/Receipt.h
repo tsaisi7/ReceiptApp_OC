@@ -9,18 +9,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-struct Receipt{
-    NSString *storeName;
-    NSString *receipt2Number;
-    NSString *receipt8Number;
-    NSString *year;
-    NSString *month;
-    NSString *day;
-    NSString *totalExpense;
-    NSMutableArray *products;
-};
-
 @interface Receipt : NSObject
+
+@property NSString *receiptID;
+@property NSString *storeName;
+@property NSString *receipt2Number;
+@property NSString *receipt8Number;
+@property NSString *year;
+@property NSString *month;
+@property NSString *day;
+@property NSString *totalExpense;
+@property NSMutableArray *products;
 
 @end
 

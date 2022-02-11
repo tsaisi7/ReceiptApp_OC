@@ -26,6 +26,8 @@
 		664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E922227B11F6E00EE53C1 /* LoginViewController.m */; };
 		664E922627B120DC00EE53C1 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664E922527B120DC00EE53C1 /* SignUpViewController.m */; };
 		664E922C27B127E500EE53C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 664E922B27B127E500EE53C1 /* GoogleService-Info.plist */; };
+		665119E927B6472300E6B4FF /* WinningReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119E827B6472300E6B4FF /* WinningReceiptViewController.m */; };
+		665119EC27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119EB27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m */; };
 		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
 		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
 		A3DF69ECED19F4720B6A19B5 /* Pods_ReceiptApp_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */; };
@@ -69,6 +71,10 @@
 		664E922427B120DC00EE53C1 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		664E922527B120DC00EE53C1 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		664E922B27B127E500EE53C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		665119E727B6472300E6B4FF /* WinningReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WinningReceiptViewController.h; sourceTree = "<group>"; };
+		665119E827B6472300E6B4FF /* WinningReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WinningReceiptViewController.m; sourceTree = "<group>"; };
+		665119EA27B64CDC00E6B4FF /* ShowWinningReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowWinningReceiptViewController.h; sourceTree = "<group>"; };
+		665119EB27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningReceiptViewController.m; sourceTree = "<group>"; };
 		66F2368627B24F1E007EB844 /* AddReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReceiptViewController.h; sourceTree = "<group>"; };
 		66F2368727B24F1E007EB844 /* AddReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReceiptViewController.m; sourceTree = "<group>"; };
 		66F2368927B26D11007EB844 /* ProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
@@ -146,6 +152,10 @@
 				663C6CFE27B4E9510073C1CB /* ShowReceiptViewController.m */,
 				663C6D0627B55AF70073C1CB /* ShowReceiptDetailViewController.h */,
 				663C6D0727B55AF70073C1CB /* ShowReceiptDetailViewController.m */,
+				665119E727B6472300E6B4FF /* WinningReceiptViewController.h */,
+				665119E827B6472300E6B4FF /* WinningReceiptViewController.m */,
+				665119EA27B64CDC00E6B4FF /* ShowWinningReceiptViewController.h */,
+				665119EB27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -317,6 +327,7 @@
 			files = (
 				663C6D0527B506CC0073C1CB /* ReceiptTableViewCell.m in Sources */,
 				663C6D0827B55AF70073C1CB /* ShowReceiptDetailViewController.m in Sources */,
+				665119EC27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m in Sources */,
 				663C6CFF27B4E9510073C1CB /* ShowReceiptViewController.m in Sources */,
 				664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */,
 				6623F22F27B2D07A009CFF54 /* Product.m in Sources */,
@@ -331,6 +342,7 @@
 				662343A827B35F22002A29D4 /* Receipt.m in Sources */,
 				66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */,
 				660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */,
+				665119E927B6472300E6B4FF /* WinningReceiptViewController.m in Sources */,
 				664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

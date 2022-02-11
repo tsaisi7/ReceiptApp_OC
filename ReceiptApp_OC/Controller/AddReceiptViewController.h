@@ -11,23 +11,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AddReceiptViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITextField *storeNameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *yearTextField;
-@property (weak, nonatomic) IBOutlet UITextField *monthTextField;
-@property (weak, nonatomic) IBOutlet UITextField *dayTextField;
-@property (weak, nonatomic) IBOutlet UITextField *receipt2NumberTextField;
-@property (weak, nonatomic) IBOutlet UITextField *receipt8NumberTextField;
-@property (weak, nonatomic) IBOutlet UITextField *totalExpenseTextField;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) NSString *year;
-@property (weak, nonatomic) NSString *month;
-@property (weak, nonatomic) NSString *day;
-@property (weak, nonatomic) NSString *receipt2Number;
-@property (weak, nonatomic) NSString *receipt8Number;
-@property (weak, nonatomic) NSString *totalExpense;
-@property (weak, nonatomic) NSString *storeName;
-@property (weak, nonatomic) NSMutableArray *products_add;
-//@property (weak, nonatomic) NSMutableArray *products;
+@property (weak, nonatomic) IBOutlet UITextField* storeNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField* yearTextField;
+@property (weak, nonatomic) IBOutlet UITextField* monthTextField;
+@property (weak, nonatomic) IBOutlet UITextField* dayTextField;
+@property (weak, nonatomic) IBOutlet UITextField* receipt2NumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField* receipt8NumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField* totalExpenseTextField;
+@property (weak, nonatomic) IBOutlet UITableView* tableView;
+@property (weak, nonatomic) NSString* year;
+@property (weak, nonatomic) NSString* month;
+@property (weak, nonatomic) NSString* day;
+@property (weak, nonatomic) NSString* receipt2Number;
+@property (weak, nonatomic) NSString* receipt8Number;
+@property (weak, nonatomic) NSString* totalExpense;
+@property (weak, nonatomic) NSString* storeName;
+@property NSMutableArray* products;
+@property NSMutableArray* products_add;
+@property (weak, nonatomic) NSString* receiptID;
 
 @end
 

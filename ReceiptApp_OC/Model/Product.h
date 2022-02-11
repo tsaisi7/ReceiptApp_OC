@@ -9,15 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-struct Product {
-    NSString *name;
-    NSString *count;
-    NSString *amount;
-    NSString *discount;
-    NSString *productID;
-};
 
 @interface Product : NSObject
+
+@property NSString *name;
+@property NSString *count;
+@property NSString *amount;
+@property NSString *discount;
+@property NSString *productID;
 
 @end
 
