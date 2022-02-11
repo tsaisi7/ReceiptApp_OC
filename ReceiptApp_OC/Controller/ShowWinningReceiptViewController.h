@@ -22,9 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (weak, nonatomic) FIRDocumentReference* ref;
 //@property (weak, nonatomic) FIRUser* user;
 @property NSMutableArray* receipts;
-@property NSMutableArray* winningWeceipts;
+@property NSMutableArray* winningReceipts;
 @property NSMutableArray* winningMoneys;
-@property BOOL* isWin;
+@property BOOL isWin;
 
 
 

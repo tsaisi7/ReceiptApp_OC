@@ -1487,7 +1487,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="amountLabel" destination="Pye-zI-z3o" id="8Px-ER-KhM"/>
+                                                            <outlet property="amountLabel" destination="Pye-zI-z3o" id="OXC-VC-Jwg"/>
                                                             <outlet property="countLabel" destination="CXU-W4-OQj" id="95f-PO-qJe"/>
                                                             <outlet property="discountLabel" destination="STR-eG-6TI" id="1c6-y1-9g7"/>
                                                             <outlet property="nameLabel" destination="tlj-sH-j3x" id="tqA-Qg-s62"/>
@@ -2484,52 +2484,55 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="y0O-86-XR9">
                                                     <rect key="frame" x="35" y="8.0000000000000018" width="256" height="28.666666666666671"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="民國" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRd-bg-bDi">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民國" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRd-bg-bDi">
                                                             <rect key="frame" x="0.0" y="0.0" width="57.666666666666664" height="28.666666666666668"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="57.666666666666664" id="QWb-Xx-kUW"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="110" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75G-Xb-BWy">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75G-Xb-BWy">
                                                             <rect key="frame" x="65.666666666666671" y="0.0" width="36.333333333333329" height="28.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTh-CJ-VCE">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTh-CJ-VCE">
                                                             <rect key="frame" x="110" y="0.0" width="24.333333333333343" height="28.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LnC-z7-78X">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="LnC-z7-78X">
                                                             <rect key="frame" x="142.33333333333334" y="0.0" width="113.66666666666666" height="28.666666666666668"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1A-71-myG">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1A-71-myG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="21.666666666666668" height="28.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3G-wM-ujX">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3G-wM-ujX">
                                                                     <rect key="frame" x="23.666666666666657" y="0.0" width="24.333333333333329" height="28.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-rb-lCQ">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Bf-rb-lCQ">
                                                                     <rect key="frame" x="50" y="0.0" width="10.666666666666664" height="28.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-28-kQf">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-28-kQf">
                                                                     <rect key="frame" x="62.66666666666665" y="0.0" width="24.666666666666664" height="28.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7q-C1-xaE">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7q-C1-xaE">
                                                                     <rect key="frame" x="89.333333333333343" y="0.0" width="24.333333333333329" height="28.666666666666668"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                                     <nil key="textColor"/>
@@ -2552,7 +2555,7 @@
                                             </constraints>
                                         </view>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="winningReceiptCell" rowHeight="70" id="Gna-f2-9dF" customClass="WinningReceiptTableViewCell" customModule="ReceiptApp" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="winningReceiptCell" rowHeight="70" id="Gna-f2-9dF" customClass="WinningReceiptTableViewCell">
                                                 <rect key="frame" x="0.0" y="84.666666030883789" width="326" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gna-f2-9dF" id="VwD-cp-0xy">
@@ -2639,7 +2642,12 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <segue destination="saP-Qk-67p" kind="show" id="xQx-JU-ZHq"/>
+                                                    <outlet property="dateLabel" destination="Avy-XB-Nyb" id="nj0-Ua-El4"/>
+                                                    <outlet property="moneyLabel" destination="9d3-Bd-eRa" id="4TL-Yt-dH8"/>
+                                                    <outlet property="receipt2NumberLabel" destination="4eA-vu-h41" id="Uwi-PN-PzI"/>
+                                                    <outlet property="receipt8NumberLabel" destination="wq7-Xf-OR6" id="rZY-uN-0P7"/>
+                                                    <outlet property="storeNameLabel" destination="kfh-mW-Hho" id="5HJ-QV-AIu"/>
+                                                    <segue destination="saP-Qk-67p" kind="show" identifier="showWinningReceiptDetail" id="xQx-JU-ZHq"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -2683,7 +2691,7 @@
         <!--發票資訊-->
         <scene sceneID="PL5-WG-7KX">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="saP-Qk-67p" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="saP-Qk-67p" customClass="ShowWinningReceiptDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0VZ-tW-yHD">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2709,7 +2717,7 @@
                                                 <rect key="frame" x="16" y="16" width="250" height="404.66666666666669"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="showProductCell" rowHeight="100" id="zVY-wq-3bD" customClass="ShowProductTableViewCell" customModule="ReceiptApp" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="showWinningProductCell" rowHeight="100" id="zVY-wq-3bD" customClass="ShowWinningProductTableViewCell">
                                                         <rect key="frame" x="0.0" y="44.666666030883789" width="250" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zVY-wq-3bD" id="VDy-4t-mvH">
@@ -2832,10 +2840,10 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="amountLabel" destination="15i-Yn-8y1" id="hVt-KW-U5D"/>
-                                                            <outlet property="countLabel" destination="7Yq-KN-NWB" id="uNj-W7-z1f"/>
-                                                            <outlet property="discountLabel" destination="bph-eS-Tc6" id="1uT-F8-7db"/>
-                                                            <outlet property="nameLabel" destination="YoI-be-fmK" id="SPd-jg-KUg"/>
+                                                            <outlet property="amountLabel" destination="15i-Yn-8y1" id="8Zy-Qd-O3z"/>
+                                                            <outlet property="countLabel" destination="7Yq-KN-NWB" id="geC-ve-xBH"/>
+                                                            <outlet property="discountLabel" destination="bph-eS-Tc6" id="k6t-Nn-1bD"/>
+                                                            <outlet property="nameLabel" destination="YoI-be-fmK" id="sa5-SS-Bro"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -3024,6 +3032,17 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="發票資訊" id="nNZ-Di-D23"/>
+                    <connections>
+                        <outlet property="dayLabel" destination="bci-WM-IQA" id="Lwk-nw-7mq"/>
+                        <outlet property="moneyLabel" destination="9bR-Ac-sIz" id="8DS-Mq-aAd"/>
+                        <outlet property="monthLabel" destination="5dw-Bh-1ap" id="ezd-0g-inc"/>
+                        <outlet property="receipt2NumberLabel" destination="W4o-fA-FFp" id="z3h-vJ-aWK"/>
+                        <outlet property="receipt8NumberLabel" destination="SbJ-3h-IRf" id="2uU-8h-4jS"/>
+                        <outlet property="storeNameLabel" destination="Ycs-DC-NGO" id="ag5-lj-geU"/>
+                        <outlet property="tableView" destination="b6u-us-3Xh" id="Ktp-91-8dD"/>
+                        <outlet property="totalExpenseLabel" destination="TJ8-r1-Myn" id="luD-uQ-Z3C"/>
+                        <outlet property="yearLabel" destination="dbo-sf-fpH" id="2vm-V1-qdG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HP-Sm-gFY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

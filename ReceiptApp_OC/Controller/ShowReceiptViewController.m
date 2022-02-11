@@ -133,7 +133,6 @@ NSInteger day;
         Receipt *receipt = self.receipts[indexPath.row];
         showReceiptDetailViewController.receiptID = receipt.receiptID;
         NSLog(@"receiptID======>%@",receipt.receiptID);
-
     }
 }
 

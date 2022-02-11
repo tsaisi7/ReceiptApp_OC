@@ -6,11 +6,13 @@
 //
 
 #import "ShowWinningReceiptViewController.h"
+#import "ShowWinningReceiptDetailViewController.h"
+#import "WinningReceiptTableViewCell.h"
 #import "Receipt.h"
 #import "Product.h"
 @import Firebase;
 
-@interface ShowWinningReceiptViewController ()
+@interface ShowWinningReceiptViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -30,7 +32,13 @@ FIRDocumentReference* ref7;
     self.yearLabel.text = self.year;
     self.monthLabel.text = monthStr;
     self.month2Label.text = month2Str;
+    
     self.receipts = [[NSMutableArray alloc]init];
+    self.winningReceipts = [[NSMutableArray alloc]init];
+    self.winningMoneys = [[NSMutableArray alloc]init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
     [self readData];
 }
 
@@ -59,21 +67,87 @@ FIRDocumentReference* ref7;
                 [self.receipts addObject: receipt];
             }
             [self check];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                
+            });
         }
     }];
 }
 
+- (void)winReceipt: (Receipt*) receipt winMoney: (NSString*) money{
+    [self.winningReceipts addObject:receipt];
+    [self.winningMoneys addObject:money];
+    self.isWin = YES;
+}
+
 - (void)check{
-//    const char *c = [self.winningNumber UTF8String];
-//    for(Receipt *receipt in self.receipts){
-//        const char *r = [receipt.receipt8Number UTF8String];
-//        if (!(c[7] == r[7] && c[6] == r[6] && c[5] == r[5]) ){
-//            return;
-//        }
-//        if (!(c[4] == r[4]) ){
-//            
-//        }
-//    }
+    const char *c = [self.winningNumber UTF8String];
+    for(Receipt *receipt in self.receipts){
+        NSLog(@"%@",receipt.receipt8Number);
+        const char *r = [receipt.receipt8Number UTF8String];
+        if (!(c[7] == r[7] && c[6] == r[6])){
+            self.isWin = NO;
+            NSLog(@"%d",0);
+        }else if (!(c[5] == r[5])){
+            self.isWin = NO;
+            NSLog(@"%d",2);
+        }else if (!(c[4] == r[4])){
+            NSLog(@"%d",3);
+            [self winReceipt:receipt winMoney:@"400"];
+        }else if (!(c[3] == r[3])){
+            NSLog(@"%d",4);
+            [self winReceipt:receipt winMoney:@"1,000"];
+        }else if (!(c[2] == r[2])){
+            NSLog(@"%d",5);
+            [self winReceipt:receipt winMoney:@"4,000"];
+        }else if (!(c[1] == r[1])){
+            NSLog(@"%d",6);
+            [self winReceipt:receipt winMoney:@"10,000"];
+        }else if (!(c[0] == r[0])){
+            NSLog(@"%d",7);
+            [self winReceipt:receipt winMoney:@"40,000"];
+        }else{
+            NSLog(@"%d",8);
+            [self winReceipt:receipt winMoney:@"200,000"];
+        }
+    }
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqual: @"showWinningReceiptDetail"]){
+        NSLog(@"TEST======>");
+        ShowWinningReceiptDetailViewController *showWinningReceiptDetailViewController = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Receipt *receipt = self.winningReceipts[indexPath.row];
+        showWinningReceiptDetailViewController.receiptID = receipt.receiptID;
+        showWinningReceiptDetailViewController.money = self.winningMoneys[indexPath.row];
+        showWinningReceiptDetailViewController.storeName = receipt.storeName;
+        showWinningReceiptDetailViewController.receipt2Number = receipt.receipt2Number;
+        showWinningReceiptDetailViewController.receipt8Number = receipt.receipt8Number;
+        showWinningReceiptDetailViewController.year = receipt.year;
+        showWinningReceiptDetailViewController.month = receipt.month;
+        showWinningReceiptDetailViewController.day = receipt.day;
+        showWinningReceiptDetailViewController.totalExpense= receipt.totalExpense;
+        NSLog(@"receiptID======>%@",receipt.receiptID);
+    }
 }
  
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"----cell count:%lu", (unsigned long)self.winningReceipts.count);
+    return self.winningReceipts.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WinningReceiptTableViewCell *cell = (WinningReceiptTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"winningReceiptCell" forIndexPath: indexPath];
+    Receipt *receipt = [self.winningReceipts objectAtIndex:indexPath.row];
+    cell.storeNameLabel.text = receipt.storeName;
+    cell.receipt2NumberLabel.text = receipt.receipt2Number;
+    cell.receipt8NumberLabel.text = receipt.receipt8Number;
+    cell.moneyLabel.text = self.winningMoneys[indexPath.row];
+    cell.dateLabel.text = [[NSString alloc]initWithFormat:@"%@/%@ ",receipt.month,receipt.day];
+    return cell;
+}
+
 @end
