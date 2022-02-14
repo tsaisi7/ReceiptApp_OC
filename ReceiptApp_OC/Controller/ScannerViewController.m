@@ -27,7 +27,7 @@ FIRDocumentReference *ref_scanReceipt;
     // Do any additional setup after loading the view.
     user_scanReceipt = [FIRAuth auth].currentUser;
     ref_scanReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_scanReceipt.uid];
-    
+    self.IDs = [NSMutableArray array];
     [[ref_scanReceipt collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         if (error != nil){
             NSLog(@"ERROR");
