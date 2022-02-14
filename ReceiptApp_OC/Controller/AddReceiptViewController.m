@@ -20,14 +20,14 @@
 
 @implementation AddReceiptViewController
 
-FIRUser *user;
-FIRDocumentReference *ref;
+FIRUser *user_receipt;
+FIRDocumentReference *ref_receipt;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    user = [FIRAuth auth].currentUser;
-    ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user.uid];
+    user_receipt = [FIRAuth auth].currentUser;
+    ref_receipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_receipt.uid];
     self.products = [NSMutableArray array];
     for (Product *product in self.products_add){
         [self.products addObject:product];
@@ -42,6 +42,18 @@ FIRDocumentReference *ref;
     self.receipt8NumberTextField.text = self.receipt8Number;
     self.totalExpenseTextField.text = self.totalExpense;
     
+    [[ref_receipt collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error != nil){
+            NSLog(@"ERROR");
+            return;
+        }
+        if (snapshot != nil){
+            for (FIRDocumentSnapshot *document in snapshot.documents){
+                [self.IDs addObject:document.documentID];
+            }
+        }
+    }];
+    
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -52,11 +64,26 @@ FIRDocumentReference *ref;
 }
 // 收起鍵盤
 
+- (void)alertTitle:(NSString*)title alerMessgae:(NSString*)message{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    [alert addAction:defaultAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (IBAction)saveReceipt:(id)sender{
     if (![self.receipt2NumberTextField.text isEqual:@""] && ![self.receipt8NumberTextField.text isEqual:@""] && ![self.yearTextField.text isEqual:@""] && ![self.monthTextField.text isEqual:@""] && ![self.dayTextField.text isEqual:@""] && ![self.storeNameTextField.text isEqual:nil] && ![self.receipt2NumberTextField.text isEqual:nil] && ![self.receipt8NumberTextField.text isEqual:nil] && ![self.yearTextField.text isEqual:nil] && ![self.monthTextField.text isEqual:nil] && ![self.dayTextField.text isEqual:nil] && ![self.totalExpenseTextField.text isEqual:nil]){
 
         NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",self.receipt2NumberTextField.text,self.receipt8NumberTextField.text];
 
+        for (NSString *ID in self.IDs){
+            if ([ID isEqual:receiptID]){
+                [self alertTitle:@"提醒" alerMessgae:@"發票已儲存了"];
+                return;
+            }
+        }
+        
         NSDictionary *receiptData = @{
           @"storeName": self.storeNameTextField.text,
           @"receipt2Number": self.receipt2NumberTextField.text,
@@ -67,7 +94,7 @@ FIRDocumentReference *ref;
           @"totalExpense": self.totalExpenseTextField.text
         };
 
-        [[[ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
+        [[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
             if (error != nil) {
                 NSLog(@"Error writing document: %@", error);
                 return;
@@ -83,7 +110,7 @@ FIRDocumentReference *ref;
                 @"amount": product.amount,
                 @"discount": product.discount
             };
-            [[[[[ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] collectionWithPath:@"products"] documentWithPath:productID] setData:productData completion:^(NSError * _Nullable error) {
+            [[[[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath:receiptID] collectionWithPath:@"products"] documentWithPath:productID] setData:productData completion:^(NSError * _Nullable error) {
                 if (error != nil) {
                     NSLog(@"Error writing document: %@", error);
                     return;
@@ -92,13 +119,7 @@ FIRDocumentReference *ref;
                 }
             }];
         }
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票上傳成功" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-        [alert addAction:defaultAction];
-
-        [self presentViewController:alert animated:YES completion:nil];
+        [self alertTitle:@"提醒" alerMessgae:@"發票上傳成功！"];
     }
 };
 
@@ -113,7 +134,7 @@ FIRDocumentReference *ref;
       @"totalExpense": self.totalExpenseTextField.text
     };
     
-    [[[ref collectionWithPath:@"Receipts"] documentWithPath: self.receiptID] updateData:receiptData completion:^(NSError * _Nullable error) {
+    [[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath: self.receiptID] updateData:receiptData completion:^(NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"Error writing document: %@", error);
             return;
@@ -130,7 +151,7 @@ FIRDocumentReference *ref;
         @"discount": product.discount
         };
         if (product.productID == nil) {
-            [[[[[ref collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:productID] setData:productData completion:^(NSError * _Nullable error) {
+            [[[[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:productID] setData:productData completion:^(NSError * _Nullable error) {
                 if (error != nil) {
                     NSLog(@"Error writing document: %@", error);
                     return;
@@ -139,7 +160,7 @@ FIRDocumentReference *ref;
                 }
             }];
         }else{
-            [[[[[ref collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:productID] updateData:productData completion:^(NSError * _Nullable error) {
+            [[[[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:productID] updateData:productData completion:^(NSError * _Nullable error) {
                 if (error != nil) {
                     NSLog(@"Error writing document: %@", error);
                     return;
@@ -148,13 +169,8 @@ FIRDocumentReference *ref;
                 }
             }];
         }
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票上傳成功" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-        [alert addAction:defaultAction];
+        [self alertTitle:@"提醒" alerMessgae:@"發票編輯成功！"];
 
-        [self presentViewController:alert animated:YES completion:nil];
     }
     
 }
@@ -212,7 +228,7 @@ FIRDocumentReference *ref;
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         Product *product = [self.products objectAtIndex:indexPath.row];
-        [[[[[ref collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:product.productID] deleteDocument];
+        [[[[[ref_receipt collectionWithPath:@"Receipts"] documentWithPath:self.receiptID] collectionWithPath:@"products"] documentWithPath:product.productID] deleteDocument];
         [self.products removeObjectAtIndex:indexPath.row];
         [self.tableView reloadData];
         completionHandler(YES);

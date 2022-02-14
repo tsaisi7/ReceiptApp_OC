@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIView *scannerView;
 
+@property NSMutableArray* IDs;
+
 @end
 
 NS_ASSUME_NONNULL_END

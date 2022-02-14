@@ -17,10 +17,9 @@
 
 @implementation ShowReceiptViewController
 
-FIRUser *user3;
-FIRDocumentReference *ref3;
+FIRUser *user_showReceipt;
+FIRDocumentReference *ref_showReceipt;
 
-//NSMutableArray *receipts;
 NSInteger totalExp = 0;
 NSDate *now;
 NSInteger year;
@@ -39,8 +38,8 @@ NSInteger day;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    user3 = [FIRAuth auth].currentUser;
-    ref3 = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user3.uid];
+    user_showReceipt = [FIRAuth auth].currentUser;
+    ref_showReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_showReceipt.uid];
     
     [self readDateWithYear:year month:month day:day];
 }
@@ -73,7 +72,7 @@ NSInteger day;
     NSString *yearStr = [[NSString alloc]initWithFormat:@"%ld",year-1911];
     NSString *monthStr;
     monthStr = month < 10 ? [[NSString alloc]initWithFormat:@"0%ld",month] : [[NSString alloc]initWithFormat:@"%ld",month];
-    [[[[ref3 collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    [[[[ref_showReceipt collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         if (error != nil){
             NSLog(@"ERROR");
             return;
@@ -156,7 +155,7 @@ NSInteger day;
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
-        [[[ref3 collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+        [[[ref_showReceipt collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
             if (error != nil){
                 return;
             }

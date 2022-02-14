@@ -32,6 +32,7 @@
 		665119EF27B6737E00E6B4FF /* WinningReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119EE27B6737E00E6B4FF /* WinningReceiptTableViewCell.m */; };
 		665119F227B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F127B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m */; };
 		665119F527B692D000E6B4FF /* ShowWinningProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */; };
+		6675008F27B9F5A700541429 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675008E27B9F5A700541429 /* AnalyzeViewController.m */; };
 		66820EAB27B956A700433D71 /* ShowReceiptBySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */; };
 		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
 		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
@@ -88,6 +89,8 @@
 		665119F127B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningReceiptDetailViewController.m; sourceTree = "<group>"; };
 		665119F327B692D000E6B4FF /* ShowWinningProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowWinningProductTableViewCell.h; sourceTree = "<group>"; };
 		665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningProductTableViewCell.m; sourceTree = "<group>"; };
+		6675008D27B9F5A700541429 /* AnalyzeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
+		6675008E27B9F5A700541429 /* AnalyzeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
 		66820EA927B956A700433D71 /* ShowReceiptBySearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowReceiptBySearchViewController.h; sourceTree = "<group>"; };
 		66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowReceiptBySearchViewController.m; sourceTree = "<group>"; };
 		66F2368627B24F1E007EB844 /* AddReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReceiptViewController.h; sourceTree = "<group>"; };
@@ -177,6 +180,8 @@
 				6630D86627B8015200892A7E /* ShowReceiptByDateViewController.m */,
 				66820EA927B956A700433D71 /* ShowReceiptBySearchViewController.h */,
 				66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */,
+				6675008D27B9F5A700541429 /* AnalyzeViewController.h */,
+				6675008E27B9F5A700541429 /* AnalyzeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				6623F22F27B2D07A009CFF54 /* Product.m in Sources */,
 				6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */,
 				6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */,
+				6675008F27B9F5A700541429 /* AnalyzeViewController.m in Sources */,
 				66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */,
 				665119EF27B6737E00E6B4FF /* WinningReceiptTableViewCell.m in Sources */,
 				6630D86727B8015200892A7E /* ShowReceiptByDateViewController.m in Sources */,

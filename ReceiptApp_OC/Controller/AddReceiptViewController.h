@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSMutableArray* products;
 @property NSMutableArray* products_add;
 @property (weak, nonatomic) NSString* receiptID;
+@property NSMutableArrar* IDs;
 
 @end
 

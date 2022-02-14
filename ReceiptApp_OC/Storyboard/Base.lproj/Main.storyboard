@@ -1309,7 +1309,11 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="消費分析" id="xpi-PB-C37"/>
+                        <barButtonItem key="rightBarButtonItem" title="消費分析" id="xpi-PB-C37">
+                            <connections>
+                                <segue destination="wj1-tA-EYd" kind="show" id="moG-Ki-6tv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="vtr-o4-P5d" id="pNV-7t-aNo"/>
@@ -3298,7 +3302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNj-9O-Fhp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3611" y="-1929"/>
+            <point key="canvasLocation" x="3611" y="-1914"/>
         </scene>
         <!--發票口袋-->
         <scene sceneID="lg8-OR-aCi">
@@ -3454,14 +3458,85 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hcA-vL-o6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3611" y="-1114"/>
+            <point key="canvasLocation" x="3611" y="-1113"/>
+        </scene>
+        <!--各月份消費金額-->
+        <scene sceneID="yGl-ER-eSp">
+            <objects>
+                <viewController id="wj1-tA-EYd" customClass="AnalyzeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7cq-Hg-ZF1">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCS-7Y-eL2">
+                                <rect key="frame" x="30" y="220" width="330" height="461"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="民國" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtY-GO-Dvx">
+                                <rect key="frame" x="142" y="156" width="49" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bS7-v9-9M9">
+                                <rect key="frame" x="254" y="155" width="46" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="arrow.right.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="nextMonth:" destination="wj1-tA-EYd" eventType="touchDown" id="epf-LJ-XuR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="110" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgx-34-Jiu">
+                                <rect key="frame" x="201" y="156" width="37" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ia3-cx-CJR">
+                                <rect key="frame" x="80" y="155" width="46" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" image="arrow.left.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="lastMonth:" destination="wj1-tA-EYd" eventType="touchDown" id="cAq-CT-zwu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="71j-iT-tg3"/>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstItem="SCS-7Y-eL2" firstAttribute="top" secondItem="OtY-GO-Dvx" secondAttribute="bottom" constant="35" id="6YH-w1-aY4"/>
+                            <constraint firstItem="OtY-GO-Dvx" firstAttribute="top" secondItem="71j-iT-tg3" secondAttribute="top" constant="16" id="7rY-44-bCs"/>
+                            <constraint firstItem="71j-iT-tg3" firstAttribute="bottom" secondItem="SCS-7Y-eL2" secondAttribute="bottom" constant="80" id="DiK-2L-QL9"/>
+                            <constraint firstItem="OtY-GO-Dvx" firstAttribute="centerY" secondItem="Ia3-cx-CJR" secondAttribute="centerY" id="MXr-1M-uNE"/>
+                            <constraint firstItem="OtY-GO-Dvx" firstAttribute="leading" secondItem="Ia3-cx-CJR" secondAttribute="trailing" constant="16" id="XIm-SN-srq"/>
+                            <constraint firstItem="Ia3-cx-CJR" firstAttribute="leading" secondItem="71j-iT-tg3" secondAttribute="leading" constant="80" id="ZpI-nd-9wi"/>
+                            <constraint firstItem="bgx-34-Jiu" firstAttribute="leading" secondItem="OtY-GO-Dvx" secondAttribute="trailing" constant="10" id="dLG-om-lRQ"/>
+                            <constraint firstItem="SCS-7Y-eL2" firstAttribute="leading" secondItem="71j-iT-tg3" secondAttribute="leading" constant="30" id="eIk-GW-8P9"/>
+                            <constraint firstItem="71j-iT-tg3" firstAttribute="trailing" secondItem="SCS-7Y-eL2" secondAttribute="trailing" constant="30" id="foJ-jd-dbN"/>
+                            <constraint firstItem="bgx-34-Jiu" firstAttribute="centerY" secondItem="Ia3-cx-CJR" secondAttribute="centerY" id="kLA-0M-6HL"/>
+                            <constraint firstItem="bS7-v9-9M9" firstAttribute="leading" secondItem="bgx-34-Jiu" secondAttribute="trailing" constant="16" id="raZ-Zq-QBw"/>
+                            <constraint firstItem="bS7-v9-9M9" firstAttribute="centerY" secondItem="Ia3-cx-CJR" secondAttribute="centerY" id="wGH-hc-RfI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="各月份消費金額" id="Gbu-8B-YHq"/>
+                    <connections>
+                        <outlet property="chartView" destination="SCS-7Y-eL2" id="odR-hx-oXL"/>
+                        <outlet property="leftButton" destination="Ia3-cx-CJR" id="tPi-IQ-req"/>
+                        <outlet property="rightButton" destination="bS7-v9-9M9" id="VYu-av-zb7"/>
+                        <outlet property="yearLabel" destination="bgx-34-Jiu" id="6IG-PN-QVa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RbD-JE-v7u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2827.6923076923076" y="-1411.1374407582937"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Uo4-Pf-Jez"/>
+        <segue reference="z68-ey-hp4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.left.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.right.circle" catalog="system" width="128" height="121"/>
         <image name="arrow.right.to.line.circle" catalog="system" width="128" height="121"/>
         <image name="clock.circle" catalog="system" width="128" height="121"/>
         <image name="eye.circle" catalog="system" width="128" height="121"/>

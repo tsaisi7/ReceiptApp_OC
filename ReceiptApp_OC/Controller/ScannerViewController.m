@@ -18,15 +18,27 @@
 
 AVCaptureSession *captureSession;
 AVCaptureVideoPreviewLayer *previewLayer;
-FIRUser *user2;
-FIRDocumentReference *ref2;
+FIRUser *user_scanReceipt;
+FIRDocumentReference *ref_scanReceipt;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    user2 = [FIRAuth auth].currentUser;
-    ref2 = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user2.uid];
+    user_scanReceipt = [FIRAuth auth].currentUser;
+    ref_scanReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_scanReceipt.uid];
+    
+    [[ref_scanReceipt collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error != nil){
+            NSLog(@"ERROR");
+            return;
+        }
+        if (snapshot != nil){
+            for (FIRDocumentSnapshot *document in snapshot.documents){
+                [self.IDs addObject:document.documentID];
+            }
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -113,6 +125,13 @@ FIRDocumentReference *ref2;
         
         NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",[stringValue substringWithRange:NSMakeRange(0, 2)],[stringValue substringWithRange:NSMakeRange(2, 8)]];
         
+        for (NSString *ID in self.IDs){
+            if ([ID isEqual:receiptID]){
+                [self alertTitle:@"提醒" alerMessgae:@"發票已儲存了"];
+                return;
+            }
+        }
+        
         NSScanner *scanner = [NSScanner scannerWithString:[stringValue substringWithRange:NSMakeRange(29, 8)]];
         unsigned int outValue;
         [scanner scanHexInt:&outValue];
@@ -128,7 +147,7 @@ FIRDocumentReference *ref2;
           @"totalExpense": totalExpString
         };
 
-        [[[ref2 collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
+        [[[ref_scanReceipt collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
             if (error != nil) {
                 NSLog(@"Error writing document: %@", error);
                 return;
