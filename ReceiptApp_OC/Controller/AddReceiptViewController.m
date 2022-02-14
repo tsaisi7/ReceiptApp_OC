@@ -32,6 +32,7 @@ FIRDocumentReference *ref_receipt;
     for (Product *product in self.products_add){
         [self.products addObject:product];
     }
+    self.IDs = [NSMutableArray array];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.storeNameTextField.text = self.storeName;
@@ -66,7 +67,9 @@ FIRDocumentReference *ref_receipt;
 
 - (void)alertTitle:(NSString*)title alerMessgae:(NSString*)message{
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
     [alert addAction:defaultAction];
 
     [self presentViewController:alert animated:YES completion:nil];
@@ -78,6 +81,7 @@ FIRDocumentReference *ref_receipt;
         NSString *receiptID = [[NSString alloc] initWithFormat: @"%@-%@",self.receipt2NumberTextField.text,self.receipt8NumberTextField.text];
 
         for (NSString *ID in self.IDs){
+            NSLog(@"ID: %@",ID);
             if ([ID isEqual:receiptID]){
                 [self alertTitle:@"提醒" alerMessgae:@"發票已儲存了"];
                 return;
@@ -100,6 +104,10 @@ FIRDocumentReference *ref_receipt;
                 return;
             } else {
                 NSLog(@"Receipt successfully uploaded");
+//                if (self.products.count == 0){
+//                    [self alertTitle:@"提醒" alerMessgae:@"發票上傳成功！"];
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                }
             }
         }];
         for (Product *product in self.products){
@@ -120,6 +128,7 @@ FIRDocumentReference *ref_receipt;
             }];
         }
         [self alertTitle:@"提醒" alerMessgae:@"發票上傳成功！"];
+        [self.navigationController popViewControllerAnimated:YES];
     }
 };
 
@@ -170,7 +179,6 @@ FIRDocumentReference *ref_receipt;
             }];
         }
         [self alertTitle:@"提醒" alerMessgae:@"發票編輯成功！"];
-
     }
     
 }

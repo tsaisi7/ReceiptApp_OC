@@ -59,13 +59,11 @@ AAChartModel *aaChartModel;
     for (int i = 1; i < 13; i++){
         [self getDateWithYear:self.year month:i];
     }
-    
-    CGFloat chartViewWidth = self.chartView.frame.size.width;
-    CGFloat chartViewHeight = self.chartView.frame.size.height;
-    aaChartView = [[AAChartView alloc]init];
-    aaChartView.frame = CGRectMake(0, 0, chartViewWidth, chartViewHeight);
-    [self.chartView addSubview:aaChartView];
-    
+    for (NSMutableArray *array in self.dates){
+        NSLog(@"Month: %@", array.firstObject);
+        NSLog(@"TotoalExp: %@", array.lastObject);
+    }
+
     aaChartModel = AAChartModel.new
     .chartTypeSet(AAChartTypePie)
     .tooltipValueSuffixSet(@"NTD")
@@ -75,7 +73,8 @@ AAChartModel *aaChartModel;
                      .innerSizeSet(@"50%")
                      .dataSet(self.dates)]);
     dispatch_async(dispatch_get_main_queue(), ^{
-        [aaChartView aa_drawChartWithChartModel:aaChartModel];
+        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
+//        [aaChartView aa_drawChartWithChartModel:aaChartModel];
     });
 }
 
@@ -86,13 +85,13 @@ AAChartModel *aaChartModel;
     for (int i = 1; i < 13; i++){
         [self getDateWithYear:self.year month:i];
     }
+    for (NSMutableArray *array in self.dates){
+        NSLog(@"Month: %@", array.firstObject);
+        NSLog(@"TotoalExp: %@", array.lastObject);
+    }
     
-    CGFloat chartViewWidth = self.chartView.frame.size.width;
-    CGFloat chartViewHeight = self.chartView.frame.size.height;
-    aaChartView = [[AAChartView alloc]init];
-    aaChartView.frame = CGRectMake(0, 0, chartViewWidth, chartViewHeight);
-    [self.chartView addSubview:aaChartView];
-    
+
+
     aaChartModel = AAChartModel.new
     .chartTypeSet(AAChartTypePie)
     .tooltipValueSuffixSet(@"NTD")
@@ -102,7 +101,8 @@ AAChartModel *aaChartModel;
                      .innerSizeSet(@"50%")
                      .dataSet(self.dates)]);
     dispatch_async(dispatch_get_main_queue(), ^{
-        [aaChartView aa_drawChartWithChartModel:aaChartModel];
+        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
+//        [aaChartView aa_drawChartWithChartModel:aaChartModel];
     });
 }
 
