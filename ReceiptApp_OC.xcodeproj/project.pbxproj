@@ -40,7 +40,7 @@
 		66820EAB27B956A700433D71 /* ShowReceiptBySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */; };
 		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
 		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
-		66F490F927BAB7F8007460F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F490F827BAB7F8007460F4 /* GoogleService-Info.plist */; };
+		66F490FB27BAB8E6007460F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F490FA27BAB8E6007460F4 /* GoogleService-Info.plist */; };
 		A3DF69ECED19F4720B6A19B5 /* Pods_ReceiptApp_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,7 +111,7 @@
 		66F2368727B24F1E007EB844 /* AddReceiptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddReceiptViewController.m; sourceTree = "<group>"; };
 		66F2368927B26D11007EB844 /* ProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		66F2368A27B26D11007EB844 /* ProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
-		66F490F827BAB7F8007460F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		66F490FA27BAB8E6007460F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.release.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 		664E920427B0FAA700EE53C1 /* ReceiptApp_OC */ = {
 			isa = PBXGroup;
 			children = (
-				66F490F827BAB7F8007460F4 /* GoogleService-Info.plist */,
+				66F490FA27BAB8E6007460F4 /* GoogleService-Info.plist */,
 				664E922A27B1213100EE53C1 /* View */,
 				664E922927B1210D00EE53C1 /* Model */,
 				664E922827B1210200EE53C1 /* Storyboard */,
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				664E921527B0FAAA00EE53C1 /* LaunchScreen.storyboard in Resources */,
-				66F490F927BAB7F8007460F4 /* GoogleService-Info.plist in Resources */,
+				66F490FB27BAB8E6007460F4 /* GoogleService-Info.plist in Resources */,
 				664E921227B0FAAA00EE53C1 /* Assets.xcassets in Resources */,
 				664E921027B0FAA700EE53C1 /* Main.storyboard in Resources */,
 			);
