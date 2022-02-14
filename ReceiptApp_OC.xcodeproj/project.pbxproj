@@ -33,6 +33,11 @@
 		665119F227B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F127B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m */; };
 		665119F527B692D000E6B4FF /* ShowWinningProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */; };
 		6675008F27B9F5A700541429 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675008E27B9F5A700541429 /* AnalyzeViewController.m */; };
+		6675009227BA417300541429 /* YearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009127BA417300541429 /* YearTextField.m */; };
+		6675009527BA489000541429 /* MonthTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009427BA489000541429 /* MonthTextField.m */; };
+		6675009827BA48CD00541429 /* DayTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009727BA48CD00541429 /* DayTextField.m */; };
+		6675009B27BA491D00541429 /* receipt2NumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009A27BA491D00541429 /* receipt2NumberTextField.m */; };
+		6675009E27BA496600541429 /* Receipt8NumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009D27BA496600541429 /* Receipt8NumberTextField.m */; };
 		66820EAB27B956A700433D71 /* ShowReceiptBySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */; };
 		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
 		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
@@ -91,6 +96,16 @@
 		665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningProductTableViewCell.m; sourceTree = "<group>"; };
 		6675008D27B9F5A700541429 /* AnalyzeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		6675008E27B9F5A700541429 /* AnalyzeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
+		6675009027BA417300541429 /* YearTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearTextField.h; sourceTree = "<group>"; };
+		6675009127BA417300541429 /* YearTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YearTextField.m; sourceTree = "<group>"; };
+		6675009327BA489000541429 /* MonthTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonthTextField.h; sourceTree = "<group>"; };
+		6675009427BA489000541429 /* MonthTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonthTextField.m; sourceTree = "<group>"; };
+		6675009627BA48CD00541429 /* DayTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DayTextField.h; sourceTree = "<group>"; };
+		6675009727BA48CD00541429 /* DayTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayTextField.m; sourceTree = "<group>"; };
+		6675009927BA491D00541429 /* receipt2NumberTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = receipt2NumberTextField.h; sourceTree = "<group>"; };
+		6675009A27BA491D00541429 /* receipt2NumberTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = receipt2NumberTextField.m; sourceTree = "<group>"; };
+		6675009C27BA496600541429 /* Receipt8NumberTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Receipt8NumberTextField.h; sourceTree = "<group>"; };
+		6675009D27BA496600541429 /* Receipt8NumberTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Receipt8NumberTextField.m; sourceTree = "<group>"; };
 		66820EA927B956A700433D71 /* ShowReceiptBySearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowReceiptBySearchViewController.h; sourceTree = "<group>"; };
 		66820EAA27B956A700433D71 /* ShowReceiptBySearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowReceiptBySearchViewController.m; sourceTree = "<group>"; };
 		66F2368627B24F1E007EB844 /* AddReceiptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddReceiptViewController.h; sourceTree = "<group>"; };
@@ -219,6 +234,16 @@
 				665119EE27B6737E00E6B4FF /* WinningReceiptTableViewCell.m */,
 				665119F327B692D000E6B4FF /* ShowWinningProductTableViewCell.h */,
 				665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */,
+				6675009027BA417300541429 /* YearTextField.h */,
+				6675009127BA417300541429 /* YearTextField.m */,
+				6675009327BA489000541429 /* MonthTextField.h */,
+				6675009427BA489000541429 /* MonthTextField.m */,
+				6675009627BA48CD00541429 /* DayTextField.h */,
+				6675009727BA48CD00541429 /* DayTextField.m */,
+				6675009927BA491D00541429 /* receipt2NumberTextField.h */,
+				6675009A27BA491D00541429 /* receipt2NumberTextField.m */,
+				6675009C27BA496600541429 /* Receipt8NumberTextField.h */,
+				6675009D27BA496600541429 /* Receipt8NumberTextField.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,6 +385,7 @@
 				665119EC27B64CDC00E6B4FF /* ShowWinningReceiptViewController.m in Sources */,
 				663C6CFF27B4E9510073C1CB /* ShowReceiptViewController.m in Sources */,
 				664E920727B0FAA700EE53C1 /* AppDelegate.m in Sources */,
+				6675009527BA489000541429 /* MonthTextField.m in Sources */,
 				6623F22F27B2D07A009CFF54 /* Product.m in Sources */,
 				6623F23227B2D1C5009CFF54 /* EditProductViewController.m in Sources */,
 				6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */,
@@ -367,6 +393,7 @@
 				66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */,
 				665119EF27B6737E00E6B4FF /* WinningReceiptTableViewCell.m in Sources */,
 				6630D86727B8015200892A7E /* ShowReceiptByDateViewController.m in Sources */,
+				6675009227BA417300541429 /* YearTextField.m in Sources */,
 				664E922627B120DC00EE53C1 /* SignUpViewController.m in Sources */,
 				665119F227B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m in Sources */,
 				663C6D0B27B5721A0073C1CB /* ShowProductTableViewCell.m in Sources */,
@@ -377,6 +404,9 @@
 				66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */,
 				66820EAB27B956A700433D71 /* ShowReceiptBySearchViewController.m in Sources */,
 				660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */,
+				6675009827BA48CD00541429 /* DayTextField.m in Sources */,
+				6675009B27BA491D00541429 /* receipt2NumberTextField.m in Sources */,
+				6675009E27BA496600541429 /* Receipt8NumberTextField.m in Sources */,
 				665119E927B6472300E6B4FF /* WinningReceiptViewController.m in Sources */,
 				664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */,
 				665119F527B692D000E6B4FF /* ShowWinningProductTableViewCell.m in Sources */,

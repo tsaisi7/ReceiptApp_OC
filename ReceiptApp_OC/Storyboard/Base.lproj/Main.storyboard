@@ -410,7 +410,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uY8-SH-8dc">
                                 <rect key="frame" x="12" y="152" width="366" height="597"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2l3-ek-8pn" customClass="Receipt8TextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2l3-ek-8pn" customClass="Receipt8NumberTextField">
                                         <rect key="frame" x="195.33333333333337" y="132" width="146.66666666666663" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="dUM-Uv-4Kg"/>
@@ -509,7 +509,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35h-8Z-ubc" customClass="Receipt2TextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35h-8Z-ubc" customClass="receipt2NumberTextField">
                                         <rect key="frame" x="121.66666666666666" y="132" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="U3m-h9-GVU"/>
@@ -651,7 +651,7 @@
                                             <constraint firstItem="rg6-nU-21d" firstAttribute="leading" secondItem="Usa-1K-yMf" secondAttribute="leading" id="g25-3K-IgH"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U2L-PX-b3S" customClass="MonthTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U2L-PX-b3S" customClass="MonthTextField">
                                         <rect key="frame" x="218.33333333333334" y="82" width="50.000000000000028" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="kBf-4b-pls"/>
@@ -659,7 +659,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wib-tw-w5k" customClass="DayTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wib-tw-w5k" customClass="DayTextField">
                                         <rect key="frame" x="292" y="82" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="hqU-Ys-LlP"/>
@@ -679,7 +679,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="110" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6Z-yL-I0y" customClass="YearTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="110" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6Z-yL-I0y" customClass="YearTextField">
                                         <rect key="frame" x="117.33333333333334" y="82" width="77.333333333333343" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1693,7 +1693,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNi-Ju-kwU">
                                 <rect key="frame" x="12" y="152" width="366" height="597"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fnz-oP-btS" customClass="Receipt8TextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fnz-oP-btS" customClass="Receipt8NumberTextField">
                                         <rect key="frame" x="195.33333333333337" y="132" width="146.66666666666663" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="DWL-TA-2jE"/>
@@ -1792,7 +1792,7 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-E6-hoX" customClass="Receipt2TextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BZt-E6-hoX" customClass="receipt2NumberTextField">
                                         <rect key="frame" x="121.66666666666666" y="132" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Oh7-Nr-DIu"/>
@@ -1934,7 +1934,7 @@
                                             <constraint firstAttribute="trailing" secondItem="E2N-ay-dLM" secondAttribute="trailing" id="u6j-cz-g67"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeY-yB-Z78" customClass="MonthTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aeY-yB-Z78" customClass="MonthTextField">
                                         <rect key="frame" x="218.33333333333334" y="82" width="50.000000000000028" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="Q4K-AQ-qgg"/>
@@ -1942,7 +1942,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-FI-qb9" customClass="DayTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="01" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVH-FI-qb9" customClass="DayTextField">
                                         <rect key="frame" x="292" y="82" width="50" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="22q-aN-DB9"/>
@@ -2362,7 +2362,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 民國" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a3y-37-Bn2" customClass="YearTextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 民國" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a3y-37-Bn2" customClass="YearTextField">
                                                 <rect key="frame" x="81.333333333333357" y="0.0" width="208.66666666666663" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -2378,7 +2378,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 8位數字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7N-8T-Gwf" customClass="Receipt8TextField" customModule="ReceiptApp_OC" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" 8位數字" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W7N-8T-Gwf" customClass="Receipt8NumberTextField">
                                                 <rect key="frame" x="85.666666666666643" y="0.0" width="204.33333333333337" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
