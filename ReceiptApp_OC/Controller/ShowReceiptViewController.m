@@ -9,6 +9,7 @@
 #import "Receipt.h"
 #import "ReceiptTableViewCell.h"
 #import "ShowReceiptDetailViewController.h"
+#import "AnalyzeViewController.h"
 @import Firebase;
 
 @interface ShowReceiptViewController ()  <UITableViewDelegate, UITableViewDataSource>
@@ -35,6 +36,8 @@ NSInteger day;
     month = [[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:now];
     day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:now];
     
+
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -42,6 +45,7 @@ NSInteger day;
     ref_showReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_showReceipt.uid];
     
     [self readDateWithYear:year month:month day:day];
+    
 }
 
 - (IBAction)nextMonth:(id)sender{
@@ -123,6 +127,8 @@ NSInteger day;
         }
     }];
 }
+
+//
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"showDetail"]){
