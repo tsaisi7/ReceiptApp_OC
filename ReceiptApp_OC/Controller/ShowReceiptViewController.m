@@ -59,6 +59,7 @@ NSInteger day;
 
     }
 }
+// 下個月
 
 - (IBAction)lastMonth:(id)sender{
     if (month != 1){
@@ -71,6 +72,7 @@ NSInteger day;
         [self readDateWithYear:year month:month day:day];
     }
 }
+// 上個月
 
 - (void)readDateWithYear:(NSInteger)year month:(NSInteger) month day:(NSInteger) day{
     NSString *yearStr = [[NSString alloc]initWithFormat:@"%ld",year-1911];
@@ -128,7 +130,7 @@ NSInteger day;
     }];
 }
 
-//
+//讀取發票
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"showDetail"]){
@@ -144,6 +146,7 @@ NSInteger day;
     NSLog(@"----cell count:%lu", (unsigned long)self.receipts.count);
     return self.receipts.count;
 }
+// 設定cell count
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
@@ -157,6 +160,7 @@ NSInteger day;
     cell.dateLabel.text = [[NSString alloc]initWithFormat:@"%@/%@",receipt.month,receipt.day];
     return cell;
 }
+// 設定cell裡面的值
 
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
@@ -181,5 +185,6 @@ NSInteger day;
     configuration.performsFirstActionWithFullSwipe = NO;
     return configuration;
 }
+// 實作刪除cell
 
 @end

@@ -16,14 +16,14 @@
 
 @implementation ShowWinningReceiptDetailViewController
 
-FIRUser *user8;
-FIRDocumentReference *ref8;
+FIRUser *user_winningReceiptDetail;
+FIRDocumentReference *ref_winningReceiptDetail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    user8 = [FIRAuth auth].currentUser;
-    ref8 = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user8.uid];
+    user_winningReceiptDetail = [FIRAuth auth].currentUser;
+    ref_winningReceiptDetail = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_winningReceiptDetail.uid];
     
     self.storeNameLabel.text = self.storeName;
     self.yearLabel.text = self.year;
@@ -41,7 +41,7 @@ FIRDocumentReference *ref8;
 }
 
 - (void)readProducts{
-    [[[[ref8 collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    [[[[ref_winningReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         NSLog(@"TESTSTST999");
         if (error != nil){
             NSLog(@"ERROR");
@@ -65,6 +65,7 @@ FIRDocumentReference *ref8;
         }
     }];
 }
+// 讀取中獎發票訊息
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"----cell count:%lu", (unsigned long)self.products.count);

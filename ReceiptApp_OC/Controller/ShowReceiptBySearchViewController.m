@@ -68,7 +68,6 @@ FIRDocumentReference *ref_receiptBySearch;
                         return;
                     }
                     if (snapshot != nil){
-//                        [self.products removeAllObjects];
                         NSMutableArray *products = [[NSMutableArray alloc]init];
                         for (FIRDocumentSnapshot *document in snapshot.documents){
                             Product *product = [[Product alloc]init];
@@ -78,7 +77,6 @@ FIRDocumentReference *ref_receiptBySearch;
                             product.discount = document.data[@"discount"];
                             product.productID = document.documentID;
                             [products addObject:product];
-//                            NSLog(@"1++==++== %lu",(unsigned long)self.products.count);
                         }
                         
                         NSString *storeName = document.data[@"storeName"];
@@ -95,10 +93,7 @@ FIRDocumentReference *ref_receiptBySearch;
                         receipt.totalExpense = totalExpense;
                         receipt.receiptID = document.documentID;
                         receipt.products = products;
-//                        NSLog(@"2++==++== %lu",(unsigned long)receipt.products.count);
-//                        for (Product *product in receipt.products){
-//                            NSLog(@"3++==++== %@",product.name);
-//                        }
+
                         [self.receipts addObject: receipt];
 
                         for (Receipt* receipt in self.receipts){
@@ -114,6 +109,7 @@ FIRDocumentReference *ref_receiptBySearch;
         }
     }];
 }
+// 讀取所有發票
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"showDetailBySearch"]){
@@ -177,5 +173,6 @@ FIRDocumentReference *ref_receiptBySearch;
     self.searchReceipts = [self.receipts filteredArrayUsingPredicate:predicate];
     [self.tableView reloadData];
 }
+// 篩選包含searchText 加入searchReceipts中
 
 @end

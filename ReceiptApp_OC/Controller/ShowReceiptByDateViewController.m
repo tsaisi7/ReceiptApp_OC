@@ -46,6 +46,7 @@ FIRDocumentReference *ref_receiptByDate;
     self.day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:self.now];
     [self readDataWithYear:self.year month:self.month day:self.day];
 }
+// 更新時間
 
 - (void)readDataWithYear:(NSInteger)year month:(NSInteger) month day:(NSInteger) day{
     NSString *yearStr = [[NSString alloc]initWithFormat:@"%ld",year-1911];
@@ -104,6 +105,7 @@ FIRDocumentReference *ref_receiptByDate;
         }
     }];
 }
+//依照日期讀取發票
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"showDetailByDate"]){

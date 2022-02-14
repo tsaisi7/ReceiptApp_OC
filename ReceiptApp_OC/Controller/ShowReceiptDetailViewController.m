@@ -19,14 +19,14 @@
 
 @implementation ShowReceiptDetailViewController
 
-FIRUser *user4;
-FIRDocumentReference *ref4;
+FIRUser *user_ReceiptDetail;
+FIRDocumentReference *ref_ReceiptDetail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    user4 = [FIRAuth auth].currentUser;
-    ref4 = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user4.uid];
+    user_ReceiptDetail = [FIRAuth auth].currentUser;
+    ref_ReceiptDetail = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_ReceiptDetail.uid];
     self.receipt = [[Receipt alloc]init];
     self.products = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
@@ -35,7 +35,7 @@ FIRDocumentReference *ref4;
 }
 
 - (void)readData{
-    [[[ref4 collectionWithPath:@"Receipts"]documentWithPath:self.receiptID] addSnapshotListener:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    [[[ref_ReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID] addSnapshotListener:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
         NSLog(@"++++++%@",self.receiptID);
         if (error != nil){
             NSLog(@"ERROR");
@@ -64,7 +64,7 @@ FIRDocumentReference *ref4;
             self.receipt.receiptID = snapshot.documentID;
         }
     }];
-    [[[[ref4 collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    [[[[ref_ReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         if (error != nil){
             NSLog(@"ERROR");
             return;
@@ -85,6 +85,7 @@ FIRDocumentReference *ref4;
         }
     }];
 }
+// 讀取發票及產品
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqual:@"editReceipt"]){

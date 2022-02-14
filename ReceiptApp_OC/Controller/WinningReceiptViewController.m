@@ -57,6 +57,7 @@ NSInteger receipt_month = 1;
         [self presentViewController:alert animated:YES completion:nil];
     }
 }
+// 傳值到showWinningReceiptVC
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
