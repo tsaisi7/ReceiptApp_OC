@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C74B627B15E220085BA8D /* ProfileViewController.m */; };
+		66145D4027BD53F100E2ACE7 /* AnalyzeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66145D3F27BD53F100E2ACE7 /* AnalyzeData.m */; };
 		662343A827B35F22002A29D4 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343A727B35F22002A29D4 /* Receipt.m */; };
 		662343AB27B36D43002A29D4 /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343AA27B36D43002A29D4 /* ScannerViewController.m */; };
 		6623F22C27B2A597009CFF54 /* AddProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6623F22B27B2A597009CFF54 /* AddProductViewController.m */; };
@@ -49,6 +50,8 @@
 		3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.debug.xcconfig"; sourceTree = "<group>"; };
 		660C74B527B15E220085BA8D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		660C74B627B15E220085BA8D /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		66145D3E27BD53F100E2ACE7 /* AnalyzeData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeData.h; sourceTree = "<group>"; };
+		66145D3F27BD53F100E2ACE7 /* AnalyzeData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeData.m; sourceTree = "<group>"; };
 		662343A627B35F22002A29D4 /* Receipt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Receipt.h; sourceTree = "<group>"; };
 		662343A727B35F22002A29D4 /* Receipt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Receipt.m; sourceTree = "<group>"; };
 		662343A927B36D43002A29D4 /* ScannerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				6623F22E27B2D07A009CFF54 /* Product.m */,
 				662343A627B35F22002A29D4 /* Receipt.h */,
 				662343A727B35F22002A29D4 /* Receipt.m */,
+				66145D3E27BD53F100E2ACE7 /* AnalyzeData.h */,
+				66145D3F27BD53F100E2ACE7 /* AnalyzeData.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				6675009E27BA496600541429 /* Receipt8NumberTextField.m in Sources */,
 				665119E927B6472300E6B4FF /* WinningReceiptViewController.m in Sources */,
 				664E922327B11F6E00EE53C1 /* LoginViewController.m in Sources */,
+				66145D4027BD53F100E2ACE7 /* AnalyzeData.m in Sources */,
 				665119F527B692D000E6B4FF /* ShowWinningProductTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

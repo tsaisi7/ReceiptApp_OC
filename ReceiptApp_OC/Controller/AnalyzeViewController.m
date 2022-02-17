@@ -7,7 +7,10 @@
 
 #import "AnalyzeViewController.h"
 #import "AAChartKit.h"
+#import "AnalyzeData.h"
+
 @import Firebase;
+
 @interface AnalyzeViewController ()
 
 @end
@@ -20,20 +23,20 @@ AAChartView *aaChartView;
 AAChartModel *aaChartModel;
 dispatch_group_t group;
 dispatch_queue_t queue;
-
+AnalyzeData *data;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     group =dispatch_group_create();
     queue =dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-    
+    data = [[AnalyzeData alloc] init];
     user_showAnlyze = [FIRAuth auth].currentUser;
     ref_showAnlyze = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_showAnlyze.uid];
     
     self.now = [NSDate date];
     self.year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:self.now];
-    self.dates = [NSMutableArray arrayWithObjects:@[@"01月",@0],@[@"02月",@0],@[@"03月",@0],@[@"04月",@0],@[@"05月",@0],@[@"06月",@0],@[@"07月",@0],@[@"08月",@0],@[@"09月",@0],@[@"10月",@0],@[@"11月",@0],@[@"12月",@0], nil];
-    
+    self.dates = [data clearAnalyzeDataArray];
+    NSLog(@"\\====%@",self.dates);
     [self getDateWithYear:self.year];
     
     
@@ -51,10 +54,6 @@ dispatch_queue_t queue;
                      .nameSet(@"消費金額")
                      .innerSizeSet(@"50%")
                      .dataSet(self.dates)]);
-
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [aaChartView aa_drawChartWithChartModel:aaChartModel];
-//    });
     dispatch_group_notify(group,dispatch_get_main_queue(), ^{
         [aaChartView aa_drawChartWithChartModel:aaChartModel];
         NSLog(@"DONE");
@@ -64,70 +63,42 @@ dispatch_queue_t queue;
 
 - (IBAction)nextMonth:(id)sender{
     self.year = self.year + 1;
-       self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
-       self.dates = [NSMutableArray arrayWithObjects:@[@"01月",@0],@[@"02月",@0],@[@"03月",@0],@[@"04月",@0],@[@"05月",@0],@[@"06月",@0],@[@"07月",@0],@[@"08月",@0],@[@"09月",@0],@[@"10月",@0],@[@"11月",@0],@[@"12月",@0], nil];
-
-   //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-   //        NSLog(@"DONE");
-   //        aaChartModel = AAChartModel.new
-   //        .chartTypeSet(AAChartTypePie)
-   //        .tooltipValueSuffixSet(@"NTD")
-   //        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
-   //        .seriesSet(@[AASeriesElement.new
-   //                         .nameSet(@"消費金額")
-   //                         .innerSizeSet(@"50%")
-   //                         .dataSet(self.dates)]);
-   //
-   //        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
-   //    });
-       [self getDateWithYear:self.year];
-       dispatch_group_notify(group,dispatch_get_main_queue(), ^{
-           aaChartModel = AAChartModel.new
-           .chartTypeSet(AAChartTypePie)
-           .tooltipValueSuffixSet(@"NTD")
-           .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
-           .seriesSet(@[AASeriesElement.new
-                            .nameSet(@"消費金額")
-                            .innerSizeSet(@"50%")
-                            .dataSet(self.dates)]);
-
-           [aaChartView aa_refreshChartWithChartModel:aaChartModel];
-           NSLog(@"DONE");
-       });
+    self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
+    self.dates = [data clearAnalyzeDataArray];
+    [self getDateWithYear:self.year];
+    dispatch_group_notify(group,dispatch_get_main_queue(), ^{
+        aaChartModel = AAChartModel.new
+        .chartTypeSet(AAChartTypePie)
+        .tooltipValueSuffixSet(@"NTD")
+        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
+        .seriesSet(@[AASeriesElement.new
+                        .nameSet(@"消費金額")
+                        .innerSizeSet(@"50%")
+                        .dataSet(self.dates)]);
+        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
+        NSLog(@"DONE");
+    });
 }
 
 - (IBAction)lastMonth:(id)sender{
     self.year = self.year - 1;
-       self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
-       self.dates = [NSMutableArray arrayWithObjects:@[@"01月",@0],@[@"02月",@0],@[@"03月",@0],@[@"04月",@0],@[@"05月",@0],@[@"06月",@0],@[@"07月",@0],@[@"08月",@0],@[@"09月",@0],@[@"10月",@0],@[@"11月",@0],@[@"12月",@0], nil];
+    self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
+    self.dates = [data clearAnalyzeDataArray];
 
-   //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-   //        NSLog(@"DONE");
-   //        aaChartModel = AAChartModel.new
-   //        .chartTypeSet(AAChartTypePie)
-   //        .tooltipValueSuffixSet(@"NTD")
-   //        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
-   //        .seriesSet(@[AASeriesElement.new
-   //                         .nameSet(@"消費金額")
-   //                         .innerSizeSet(@"50%")
-   //                         .dataSet(self.dates)]);
-   //
-   //        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
-   //    });
-       [self getDateWithYear:self.year];
-       dispatch_group_notify(group,dispatch_get_main_queue(), ^{
-           aaChartModel = AAChartModel.new
-           .chartTypeSet(AAChartTypePie)
-           .tooltipValueSuffixSet(@"NTD")
-           .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
-           .seriesSet(@[AASeriesElement.new
-                            .nameSet(@"消費金額")
-                            .innerSizeSet(@"50%")
-                            .dataSet(self.dates)]);
+    [self getDateWithYear:self.year];
+    dispatch_group_notify(group,dispatch_get_main_queue(), ^{
+        aaChartModel = AAChartModel.new
+        .chartTypeSet(AAChartTypePie)
+        .tooltipValueSuffixSet(@"NTD")
+        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
+        .seriesSet(@[AASeriesElement.new
+                        .nameSet(@"消費金額")
+                        .innerSizeSet(@"50%")
+                        .dataSet(self.dates)]);
 
-           [aaChartView aa_refreshChartWithChartModel:aaChartModel];
-           NSLog(@"DONE");
-       });
+        [aaChartView aa_refreshChartWithChartModel:aaChartModel];
+        NSLog(@"DONE");
+    });
 }
 
 - (void)getDateWithYear:(NSInteger)year{
@@ -150,7 +121,8 @@ dispatch_queue_t queue;
                     if (![totalExpense isEqual:@"尚未輸入金額"]){
                         totalExp = totalExp + [totalExpense intValue];
                     }
-                    NSArray *array = @[[[NSString alloc]initWithFormat:@"%d月",i],[[NSNumber alloc]initWithInteger: totalExp]];
+                    [data setMonth:i setExpense:totalExp];
+                    NSArray *array = [data getAnalyzeData];
                     [self.dates setObject:array atIndexedSubscript:i-1];
                 }
                 NSLog(@"TEST");
@@ -158,6 +130,6 @@ dispatch_queue_t queue;
             }
         }];
     }
-}
+} //XCTest
 
 @end
