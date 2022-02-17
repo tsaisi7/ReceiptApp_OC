@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSMutableArray* products;
 @property NSArray* searchReceipts;
 @property BOOL searching;
-
+@property FIRDocumentReference* ref;
+@property FIRUser* user;
 
 @end
 

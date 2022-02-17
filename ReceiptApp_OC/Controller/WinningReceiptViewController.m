@@ -14,13 +14,12 @@
 
 @implementation WinningReceiptViewController
 
-NSArray *monthArray;
-NSInteger receipt_month = 1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    monthArray = [NSArray arrayWithObjects:@"1月＆2月",@"3月＆4月",@"5月＆6月",@"7月＆8月",@"9月＆10月",@"11月＆12月", nil];
+    self.self.monthArray = [NSArray arrayWithObjects:@"1月＆2月",@"3月＆4月",@"5月＆6月",@"7月＆8月",@"9月＆10月",@"11月＆12月", nil];
+    self.receipt_month = 1;
     self.monthPickerView.delegate = self;
     self.monthPickerView.dataSource = self;
     
@@ -43,13 +42,11 @@ NSInteger receipt_month = 1;
     if (![self.yearTextField.text isEqual:@""] && ![self.winningNumberTextField.text isEqual:@""]){
         ShowWinningReceiptViewController *showWinningReceiptViewCtroller = [self.storyboard instantiateViewControllerWithIdentifier:@"showWinningReceiptViewCtroller"];
         showWinningReceiptViewCtroller.year = self.yearTextField.text;
-        showWinningReceiptViewCtroller.month = receipt_month;
-        showWinningReceiptViewCtroller.month2 = receipt_month+1;
+        showWinningReceiptViewCtroller.month = self.receipt_month;
+        showWinningReceiptViewCtroller.month2 = self.receipt_month+1;
         showWinningReceiptViewCtroller.winningNumber = self.winningNumberTextField.text;
-        NSLog(@"TEST");
         [self.navigationController pushViewController:showWinningReceiptViewCtroller animated:YES];
     }else{
-        NSLog(@"ERROR");
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"請輸入完整資料" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
         [alert addAction:defaultAction];
@@ -64,16 +61,15 @@ NSInteger receipt_month = 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return monthArray.count;
+    return self.monthArray.count;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return monthArray[row];
+    return self.monthArray[row];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    receipt_month = row *2 +1;
-    NSLog(@"%ld",(long)receipt_month);
+    self.receipt_month = row *2 +1;
 }
 
 @end

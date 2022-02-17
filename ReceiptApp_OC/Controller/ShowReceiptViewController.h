@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@import Firebase;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ShowReceiptViewController : UIViewController
@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel* totalExpenseLabel;
 @property (weak, nonatomic) IBOutlet UILabel* totalCountLabel;
 @property NSMutableArray* receipts;
-
+@property FIRUser* user;
+@property FIRDocumentReference* ref;
 
 @end
 

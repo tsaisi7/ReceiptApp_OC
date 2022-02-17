@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSInteger month;
 @property NSInteger day;
 @property NSInteger totalExp;
-
+@property FIRDocumentReference* ref;
+@property FIRUser* user;
 
 
 @end

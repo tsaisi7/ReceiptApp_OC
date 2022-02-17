@@ -19,14 +19,11 @@
 
 @implementation ShowReceiptDetailViewController
 
-FIRUser *user_ReceiptDetail;
-FIRDocumentReference *ref_ReceiptDetail;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    user_ReceiptDetail = [FIRAuth auth].currentUser;
-    ref_ReceiptDetail = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_ReceiptDetail.uid];
+    
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
     self.receipt = [[Receipt alloc]init];
     self.products = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
@@ -35,13 +32,12 @@ FIRDocumentReference *ref_ReceiptDetail;
 }
 
 - (void)readData{
-    [[[ref_ReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID] addSnapshotListener:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        NSLog(@"++++++%@",self.receiptID);
-        if (error != nil){
+    [[[self.ref collectionWithPath:@"Receipts"]documentWithPath:self.receiptID] addSnapshotListener:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             NSString *storeName = snapshot.data[@"storeName"];
             storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
             NSString *totalExpense = snapshot.data[@"totalExpense"];
@@ -64,12 +60,12 @@ FIRDocumentReference *ref_ReceiptDetail;
             self.receipt.receiptID = snapshot.documentID;
         }
     }];
-    [[[[ref_ReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil){
+    [[[[self.ref collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             [self.products removeAllObjects];
             for (FIRDocumentSnapshot *document in snapshot.documents){
                 Product *product = [[Product alloc]init];
@@ -104,7 +100,6 @@ FIRDocumentReference *ref_ReceiptDetail;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)self.products.count);
     return self.products.count;
 }
 

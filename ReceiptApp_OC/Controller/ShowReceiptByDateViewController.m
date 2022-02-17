@@ -17,12 +17,9 @@
 
 @implementation ShowReceiptByDateViewController
 
-FIRUser *user_receiptByDate;
-FIRDocumentReference *ref_receiptByDate;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.receipts = [[NSMutableArray alloc]init];
     self.now = [self.datePicker date];
     self.year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:self.now];
@@ -32,8 +29,8 @@ FIRDocumentReference *ref_receiptByDate;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    user_receiptByDate = [FIRAuth auth].currentUser;
-    ref_receiptByDate = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_receiptByDate.uid];
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
     
     [self.datePicker addTarget:self action:@selector(updateDate) forControlEvents:UIControlEventValueChanged];
     
@@ -55,23 +52,19 @@ FIRDocumentReference *ref_receiptByDate;
     monthStr = month < 10 ? [[NSString alloc]initWithFormat:@"0%ld",month] : [[NSString alloc]initWithFormat:@"%ld",month];
     dayStr = day < 10 ? [[NSString alloc]initWithFormat:@"0%ld",day] : [[NSString alloc]initWithFormat:@"%ld",day];
     
-    [[[[[ref_receiptByDate collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] queryWhereField:@"day" isEqualTo:dayStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil){
+    [[[[[self.ref collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] queryWhereField:@"day" isEqualTo:dayStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             self.receipts = [NSMutableArray array];
             self.totalExp = 0;
-            NSLog(@"----------documents.count %lu", (unsigned long)snapshot.documents.count);
-            NSLog(@"====receipt count:%lu",self.receipts.count);
             [self.tableView reloadData];
-            NSLog(@"receipt count:  %lu",(unsigned long)self.receipts.count);
             self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
             self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.totalExp];
             
             for (FIRDocumentSnapshot *document in snapshot.documents){
-                NSLog(@"-=-=-=-=%@", document.documentID);
                 NSString *storeName = document.data[@"storeName"];
                 storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
                 NSString *totalExpense = document.data[@"totalExpense"];
@@ -86,18 +79,10 @@ FIRDocumentReference *ref_receiptByDate;
                 receipt.totalExpense = totalExpense;
                 receipt.receiptID = document.documentID;
                 [self.receipts addObject: receipt];
-                
                 if (![totalExpense isEqual:@"尚未輸入金額"]){
-                    NSLog(@"1receipt totalExp:  %ld",self.totalExp);
-                    NSLog(@"2receipt totalExpense:  %lu",(unsigned long)[totalExpense intValue]);
                     self.totalExp = self.totalExp + [totalExpense intValue];
-                    NSLog(@"3receipt totalExp:  %lu",(unsigned long)self.totalExp);
-
                 }
-                
-                NSLog(@"====receipt count:%lu",(unsigned long)self.receipts.count);
                 [self.tableView reloadData];
-                NSLog(@"receipt count:  %lu",(unsigned long)self.receipts.count);
                 self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
                 self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.totalExp];
             }
@@ -113,12 +98,10 @@ FIRDocumentReference *ref_receiptByDate;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Receipt *receipt = self.receipts[indexPath.row];
         showReceiptDetailViewController.receiptID = receipt.receiptID;
-        NSLog(@"receiptID======>%@",receipt.receiptID);
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)self.receipts.count);
     return self.receipts.count;
 }
 
@@ -138,8 +121,8 @@ FIRDocumentReference *ref_receiptByDate;
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
-        [[[ref_receiptByDate collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
-            if (error != nil){
+        [[[self.ref collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+            if (error){
                 return;
             }
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票刪除成功" preferredStyle:UIAlertControllerStyleAlert];

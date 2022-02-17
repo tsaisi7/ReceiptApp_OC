@@ -15,6 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -35,15 +36,14 @@
 // 實作一個 alertMessage的方法
 
 - (IBAction)login:(id)sender{
-    if(_emailTextField.text != nil && ![_emailTextField.text  isEqual: @""] && _passwordTextField.text != nil && ![_passwordTextField.text isEqual: @""]){
-        [[FIRAuth auth] signInWithEmail:self->_emailTextField.text password:self->_passwordTextField.text completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
+    if(self.emailTextField.text && ![self.emailTextField.text  isEqual: @""] && self.passwordTextField.text && ![self.passwordTextField.text isEqual: @""]){
+        [[FIRAuth auth] signInWithEmail:self.emailTextField.text password:self.passwordTextField.text completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
             if (error != nil){
                 NSLog(@"%@", error.localizedDescription);
                 [self alertTitle:@"錯誤" alerMessgae:@"登入失敗"];
             }
             
             if (authResult != nil){
-                NSLog(@"%@ 登入成功", authResult.user.email);
                 UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 UIViewController *home = [storyboard instantiateViewControllerWithIdentifier:@"HomeViewController"];
                 [self presentViewController:home animated:YES completion:nil];

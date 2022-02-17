@@ -18,15 +18,12 @@
 
 @implementation ShowReceiptBySearchViewController
 
-FIRUser *user_receiptBySearch;
-FIRDocumentReference *ref_receiptBySearch;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    user_receiptBySearch = [FIRAuth auth].currentUser;
-    ref_receiptBySearch = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_receiptBySearch.uid];
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
     
     [self readData];
     
@@ -53,21 +50,19 @@ FIRDocumentReference *ref_receiptBySearch;
 }
 
 - (void)readData{
-    [[ref_receiptBySearch collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+    [[self.ref collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
         if (error != nil){
             NSLog(@"ERROR");
             return;
         }
         if (snapshot != nil){
             for (FIRDocumentSnapshot *document in snapshot.documents){
-                NSLog(@"-=-=-=-=%@", document.documentID);
-                
-                [[[[ref_receiptBySearch collectionWithPath:@"Receipts"]documentWithPath:document.documentID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-                    if (error != nil){
+                [[[[self.ref collectionWithPath:@"Receipts"]documentWithPath:document.documentID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+                    if (error){
                         NSLog(@"ERROR");
                         return;
                     }
-                    if (snapshot != nil){
+                    if (snapshot){
                         NSMutableArray *products = [[NSMutableArray alloc]init];
                         for (FIRDocumentSnapshot *document in snapshot.documents){
                             Product *product = [[Product alloc]init];
@@ -95,13 +90,6 @@ FIRDocumentReference *ref_receiptBySearch;
                         receipt.products = products;
 
                         [self.receipts addObject: receipt];
-
-                        for (Receipt* receipt in self.receipts){
-                            NSLog(@"3++==++== %@",receipt.storeName);
-                            for (Product* product in receipt.products){
-                                NSLog(@"4++==++== %@",product.name);
-                            }
-                        }
                     }
                 }];
                 
@@ -117,12 +105,10 @@ FIRDocumentReference *ref_receiptBySearch;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Receipt *receipt = self.searchReceipts[indexPath.row];
         showReceiptDetailViewController.receiptID = receipt.receiptID;
-        NSLog(@"receiptID======>%@",receipt.receiptID);
     }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)self.searchReceipts.count);
     return self.searchReceipts.count;
 }
 
@@ -142,8 +128,8 @@ FIRDocumentReference *ref_receiptBySearch;
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *deleteAction = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:nil handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
         Receipt *receipt = [self.searchReceipts objectAtIndex:indexPath.row];
-        [[[ref_receiptBySearch collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
-            if (error != nil){
+        [[[self.ref collectionWithPath:@"Receipts"]documentWithPath:receipt.receiptID]deleteDocumentWithCompletion:^(NSError * _Nullable error) {
+            if (error){
                 return;
             }
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提醒" message:@"發票刪除成功" preferredStyle:UIAlertControllerStyleAlert];

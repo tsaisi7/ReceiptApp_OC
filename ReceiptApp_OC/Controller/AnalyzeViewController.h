@@ -6,6 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AAChartKit.h"
+#import "AnalyzeData.h"
+@import Firebase;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AnalyzeViewController : UIViewController
@@ -19,7 +23,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSInteger year;
 @property NSInteger month;
 @property NSInteger totalExpense;
-
+@property FIRUser *user;
+@property FIRDocumentReference *ref;
+@property AAChartView *aaChartView;
+@property AAChartModel *aaChartModel;
+@property dispatch_group_t group;
+@property dispatch_queue_t queue;
+@property AnalyzeData *data;
 
 @end
 

@@ -16,24 +16,22 @@
 
 @implementation ScannerViewController
 
-AVCaptureSession *captureSession;
-AVCaptureVideoPreviewLayer *previewLayer;
-FIRUser *user_scanReceipt;
-FIRDocumentReference *ref_scanReceipt;
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    user_scanReceipt = [FIRAuth auth].currentUser;
-    ref_scanReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_scanReceipt.uid];
+    
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
     self.IDs = [NSMutableArray array];
-    [[ref_scanReceipt collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil){
+    [self getReceiptID];
+}
+
+- (void)getReceiptID{
+    [[self.ref collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             for (FIRDocumentSnapshot *document in snapshot.documents){
                 [self.IDs addObject:document.documentID];
             }
@@ -48,52 +46,52 @@ FIRDocumentReference *ref_scanReceipt;
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(![captureSession isRunning]){
-        [captureSession startRunning];
+    if(![self.captureSession isRunning]){
+        [self.captureSession startRunning];
     }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if([captureSession isRunning]){
-        [captureSession stopRunning];
+    if([self.captureSession isRunning]){
+        [self.captureSession stopRunning];
     }
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    if([captureSession isRunning]){
-        [captureSession stopRunning];
+    if([self.captureSession isRunning]){
+        [self.captureSession stopRunning];
     }
 }
 
 - (void)setScanner{
-    captureSession = [AVCaptureSession new];
+    self.captureSession = [AVCaptureSession new];
     AVCaptureDevice *captureDeivce = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!captureDeivce) {
         return;
     }
     AVCaptureDeviceInput *deviceInput;
     deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDeivce error:nil];
-    if ([captureSession canAddInput:deviceInput]){
-        [captureSession addInput:deviceInput];
+    if ([self.captureSession canAddInput:deviceInput]){
+        [self.captureSession addInput:deviceInput];
     }else{
         return;
     }
     AVCaptureMetadataOutput *metaDataOutput = [AVCaptureMetadataOutput new];
-    if ([captureSession canAddOutput:metaDataOutput]){
-        [captureSession addOutput:metaDataOutput];
+    if ([self.captureSession canAddOutput:metaDataOutput]){
+        [self.captureSession addOutput:metaDataOutput];
         [metaDataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
         metaDataOutput.metadataObjectTypes = @[AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN8Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypePDF417Code];
     }else{
         return;
     }
     
-    previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:captureSession];
-    previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    previewLayer.frame = _scannerView.layer.frame;
-    [self.view.layer addSublayer:previewLayer];
-    [captureSession startRunning];
+    self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    self.previewLayer.frame = _scannerView.layer.frame;
+    [self.view.layer addSublayer:self.previewLayer];
+    [self.captureSession startRunning];
 }
 
 - (void)alertTitle:(NSString*)title alerMessgae:(NSString*)message{
@@ -113,7 +111,7 @@ FIRDocumentReference *ref_scanReceipt;
     }
     NSString *stringValue = readableObject.stringValue;
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    NSLog(@"%@",stringValue);
+    NSLog(@"input: %@",stringValue);
     NSString *regex = @"[A-Z][A-Z][0-9]{19}[a-fA-F0-9]{16}";
     NSRange range = [stringValue rangeOfString:regex options:NSRegularExpressionSearch];
     if (range.location == NSNotFound) {
@@ -147,8 +145,8 @@ FIRDocumentReference *ref_scanReceipt;
           @"totalExpense": totalExpString
         };
 
-        [[[ref_scanReceipt collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
-            if (error != nil) {
+        [[[self.ref collectionWithPath:@"Receipts"] documentWithPath:receiptID] setData: receiptData completion:^(NSError * _Nullable error) {
+            if (error) {
                 NSLog(@"Error writing document: %@", error);
                 return;
             } else {

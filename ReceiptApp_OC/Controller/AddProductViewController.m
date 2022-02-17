@@ -30,7 +30,7 @@
 // 收起鍵盤
 
 - (IBAction)addProduct:(id)sender{
-    if (![_nameTextField.text isEqual:@""] && ![_countTextField.text isEqual:@""] && ![_amountTextField.text isEqual:@""] && ![_discountTextField.text isEqual:@""] && ![_nameTextField.text isEqual:nil] && ![_countTextField.text isEqual:nil] && ![_amountTextField.text isEqual:nil] && ![_discountTextField.text isEqual:nil]){
+    if (![self.nameTextField.text isEqual:@""] && ![self.countTextField.text isEqual:@""] && ![self.amountTextField.text isEqual:@""] && ![self.discountTextField.text isEqual:@""] && self.nameTextField.text && self.countTextField.text && self.amountTextField.text && self.discountTextField.text){
         self.product.name = self.nameTextField.text;
         self.product.count = self.countTextField.text;
         self.product.amount= self.amountTextField.text;

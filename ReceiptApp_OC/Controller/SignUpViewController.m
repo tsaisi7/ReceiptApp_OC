@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -37,19 +38,18 @@
 
 - (IBAction)signUp:(id)sender {
     
-    if(_emailTextField.text != nil && ![_emailTextField.text  isEqual: @""] && _passwordTextField.text != nil && ![_passwordTextField.text isEqual: @""]){
-        [[FIRAuth auth] createUserWithEmail:_emailTextField.text password:_passwordTextField.text completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
-            if (error != nil){
+    if(self.emailTextField.text && ![self.emailTextField.text  isEqual: @""] && self.passwordTextField.text && ![self.passwordTextField.text isEqual: @""]){
+        [[FIRAuth auth] createUserWithEmail:self.emailTextField.text password:self.passwordTextField.text completion:^(FIRAuthDataResult * _Nullable authResult, NSError * _Nullable error) {
+            if (error){
                 NSLog(@"%@", error.localizedDescription);
                 [self alertTitle:@"錯誤" alerMessgae:@"註冊失敗"];
             }
             
-            if (authResult != nil){
-                NSLog(@"%@ 建立成功", authResult.user.email);
+            if (authResult){
                 FIRUserProfileChangeRequest *changeRequest = [[FIRAuth auth].currentUser profileChangeRequest];
-                changeRequest.displayName = self->_nameTextField.text;
+                changeRequest.displayName = self.nameTextField.text;
                 [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                    if (error != nil){
+                    if (error){
                         NSLog(@"%@", error.localizedDescription);
                     }
                 }];

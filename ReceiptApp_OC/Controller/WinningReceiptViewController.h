@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField* yearTextField;
 @property (weak, nonatomic) IBOutlet UIPickerView* monthPickerView;
 @property (weak, nonatomic) IBOutlet UITextField* winningNumberTextField;
-
+@property NSArray *monthArray;
+@property NSInteger receipt_month;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -17,9 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    _nameTextField.text = FIRAuth.auth.currentUser.displayName;
-    _emailTextField.text = FIRAuth.auth.currentUser.email;
+
+    self.nameTextField.text = FIRAuth.auth.currentUser.displayName;
+    self.emailTextField.text = FIRAuth.auth.currentUser.email;
+    
     UITapGestureRecognizer *tap  = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(keyboardHide:)];
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
@@ -31,7 +32,6 @@
 // 收起鍵盤
 
 - (IBAction)logOut:(id)sender{
-    NSLog(@"LOGOUT");
     NSError *signOutError;
     BOOL status = [[FIRAuth auth] signOut:&signOutError];
     if (!status) {
@@ -56,26 +56,26 @@
 //實作logOut
 
 - (IBAction)changeProfile:(id)sender{
-    if (![_emailTextField.text isEqual: @""] && ![_nameTextField.text  isEqual: @""]){
-        if (_emailTextField.text != nil){
+    if (![self.emailTextField.text isEqual: @""] && ![self.nameTextField.text  isEqual: @""]){
+        if (self.emailTextField.text){
             [[[FIRAuth auth]currentUser] updateEmail:_emailTextField.text completion:^(NSError * _Nullable error) {
-                if (error != nil){
+                if (!error){
                     NSLog(@"%@", error.localizedDescription);
                 }
             }];
         }
-        if (_nameTextField.text != nil){
+        if (self.nameTextField.text){
             FIRUserProfileChangeRequest *changeRequest = [[[FIRAuth auth] currentUser] profileChangeRequest];
             changeRequest.displayName = self->_nameTextField.text;
             [changeRequest commitChangesWithCompletion:^(NSError *_Nullable error) {
-                if (error != nil){
+                if (!error){
                     NSLog(@"%@", error.localizedDescription);
                 }
             }];
         }
-        if (_passwordTextField.text != nil){
+        if (self.passwordTextField.text){
             [[[FIRAuth auth]currentUser] updatePassword:_passwordTextField.text completion:^(NSError * _Nullable error) {
-                if (error != nil){
+                if (!error){
                     NSLog(@"%@", error.localizedDescription);
                 }
             }];

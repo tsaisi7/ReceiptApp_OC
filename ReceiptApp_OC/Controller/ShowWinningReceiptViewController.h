@@ -19,12 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSInteger month;
 @property NSInteger month2;
 @property (weak, nonatomic) NSString* winningNumber;
-//@property (weak, nonatomic) FIRDocumentReference* ref;
-//@property (weak, nonatomic) FIRUser* user;
+@property FIRDocumentReference* ref;
+@property FIRUser* user;
 @property NSMutableArray* receipts;
 @property NSMutableArray* winningReceipts;
 @property NSMutableArray* winningMoneys;
 @property BOOL isWin;
+@property NSString* monthStr;
+@property NSString* month2Str;
 
 
 

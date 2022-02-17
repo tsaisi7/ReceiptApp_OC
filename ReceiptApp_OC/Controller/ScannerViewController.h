@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@import Firebase;
+@import AVFoundation;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIView *scannerView;
 
 @property NSMutableArray* IDs;
-
+@property FIRUser* user;
+@property FIRDocumentReference* ref;
+@property AVCaptureSession *captureSession;
+@property AVCaptureVideoPreviewLayer *previewLayer;
 @end
 
 NS_ASSUME_NONNULL_END

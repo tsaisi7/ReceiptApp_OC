@@ -1,4 +1,3 @@
-//
 //  EditProductViewController.m
 //  ReceiptAppself.OC
 //
@@ -31,7 +30,7 @@
 // 收起鍵盤
 
 - (IBAction)editProduct:(id)sender{
-    if (![self.nameTextField.text isEqual:@""] && ![self.countTextField.text isEqual:@""] && ![self.amountTextField.text isEqual:@""] && ![self.discountTextField.text isEqual:@""] && ![self.nameTextField.text isEqual:nil] && ![self.countTextField.text isEqual:nil] && ![self.amountTextField.text isEqual:nil] && ![self.discountTextField.text isEqual:nil]){
+    if (![self.nameTextField.text isEqual:@""] && ![self.countTextField.text isEqual:@""] && ![self.amountTextField.text isEqual:@""] && ![self.discountTextField.text isEqual:@""] && self.nameTextField.text && self.countTextField.text && self.amountTextField.text && self.discountTextField.text){
         self.product.name = self.nameTextField.text;
         self.product.count = self.countTextField.text;
         self.product.amount = self.amountTextField.text;

@@ -16,14 +16,11 @@
 
 @implementation ShowWinningReceiptDetailViewController
 
-FIRUser *user_winningReceiptDetail;
-FIRDocumentReference *ref_winningReceiptDetail;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    user_winningReceiptDetail = [FIRAuth auth].currentUser;
-    ref_winningReceiptDetail = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_winningReceiptDetail.uid];
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
     
     self.storeNameLabel.text = self.storeName;
     self.yearLabel.text = self.year;
@@ -36,22 +33,18 @@ FIRDocumentReference *ref_winningReceiptDetail;
     self.products = [[NSMutableArray alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    NSLog(@"----ID :  %@", self.receiptID);
     [self readProducts];
 }
 
 - (void)readProducts{
-    [[[[ref_winningReceiptDetail collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        NSLog(@"TESTSTST999");
-        if (error != nil){
+    [[[[self.ref collectionWithPath:@"Receipts"]documentWithPath:self.receiptID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             [self.products removeAllObjects];
             for (FIRDocumentSnapshot *document in snapshot.documents){
-                NSLog(@"TESTSTSTSSTS");
-
                 Product *product = [[Product alloc]init];
                 product.name = document.data[@"name"];
                 product.count = document.data[@"count"];
@@ -68,7 +61,6 @@ FIRDocumentReference *ref_winningReceiptDetail;
 // 讀取中獎發票訊息
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)self.products.count);
     return self.products.count;
 }
 

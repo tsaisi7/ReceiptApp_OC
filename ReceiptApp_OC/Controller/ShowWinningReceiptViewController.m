@@ -18,20 +18,16 @@
 
 @implementation ShowWinningReceiptViewController
 
-NSString* monthStr;
-NSString* month2Str;
-FIRUser* user_winningReceipt;
-FIRDocumentReference* ref_winningReceipt;
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    user_winningReceipt = [FIRAuth auth].currentUser;
-    ref_winningReceipt = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:user_winningReceipt.uid];
-    monthStr = self.month <10 ? [[NSString alloc]initWithFormat:@"0%ld",(long)self.month] :[[NSString alloc]initWithFormat:@"%ld",(long)self.month];
-    month2Str = self.month2 <10 ? [[NSString alloc]initWithFormat:@"0%ld",(long)self.month2] :[[NSString alloc]initWithFormat:@"%ld",(long)self.month2];
+    
+    self.user = [FIRAuth auth].currentUser;
+    self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
+    self.monthStr = self.month <10 ? [[NSString alloc]initWithFormat:@"0%ld",(long)self.month] :[[NSString alloc]initWithFormat:@"%ld",(long)self.month];
+    self.month2Str = self.month2 <10 ? [[NSString alloc]initWithFormat:@"0%ld",(long)self.month2] :[[NSString alloc]initWithFormat:@"%ld",(long)self.month2];
     self.yearLabel.text = self.year;
-    self.monthLabel.text = monthStr;
-    self.month2Label.text = month2Str;
+    self.monthLabel.text = self.monthStr;
+    self.month2Label.text = self.month2Str;
     
     self.receipts = [[NSMutableArray alloc]init];
     self.winningReceipts = [[NSMutableArray alloc]init];
@@ -43,14 +39,13 @@ FIRDocumentReference* ref_winningReceipt;
 }
 
 - (void)readData{
-    [[[[ref_winningReceipt collectionWithPath:@"Receipts"]queryWhereField:@"year" isEqualTo:self.year]queryWhereField:@"month" in:@[monthStr,month2Str]]getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil){
+    [[[[self.ref collectionWithPath:@"Receipts"]queryWhereField:@"year" isEqualTo:self.year]queryWhereField:@"month" in:@[self.monthStr,self.month2Str]]getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             for (FIRDocumentSnapshot *document in snapshot.documents){
-                NSLog(@"-=-=-=-=%@", document.documentID);
                 NSString *storeName = document.data[@"storeName"];
                 storeName = [storeName isEqual:@""] ? @"商店名稱" : storeName;
                 NSString *totalExpense = document.data[@"totalExpense"];
@@ -69,7 +64,6 @@ FIRDocumentReference* ref_winningReceipt;
             [self check];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
-                
             });
         }
     }];
@@ -118,7 +112,6 @@ FIRDocumentReference* ref_winningReceipt;
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqual: @"showWinningReceiptDetail"]){
-        NSLog(@"TEST======>");
         ShowWinningReceiptDetailViewController *showWinningReceiptDetailViewController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Receipt *receipt = self.winningReceipts[indexPath.row];
@@ -131,12 +124,10 @@ FIRDocumentReference* ref_winningReceipt;
         showWinningReceiptDetailViewController.month = receipt.month;
         showWinningReceiptDetailViewController.day = receipt.day;
         showWinningReceiptDetailViewController.totalExpense= receipt.totalExpense;
-        NSLog(@"receiptID======>%@",receipt.receiptID);
     }
 }
  
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"----cell count:%lu", (unsigned long)self.winningReceipts.count);
     return self.winningReceipts.count;
 }
 

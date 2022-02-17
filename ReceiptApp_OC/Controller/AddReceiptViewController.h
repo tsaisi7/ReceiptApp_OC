@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@import Firebase;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AddReceiptViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSMutableArray* products_add;
 @property (weak, nonatomic) NSString* receiptID;
 @property NSMutableArray* IDs;
+@property FIRUser* user;
+@property FIRDocumentReference* ref;
 
 @end
 

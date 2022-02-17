@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Receipt.h"
-
+@import Firebase;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -32,6 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak , nonatomic) NSString* money;
 @property (weak , nonatomic) NSString* receiptID;
 @property NSMutableArray* products;
+@property FIRDocumentReference* ref;
+@property FIRUser* user;
 
 @end
 
