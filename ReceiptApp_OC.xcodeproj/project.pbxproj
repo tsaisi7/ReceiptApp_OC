@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281B3B3327BF327600D19E65 /* LoginVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 281B3B3227BF327600D19E65 /* LoginVCTests.m */; };
 		660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C74B627B15E220085BA8D /* ProfileViewController.m */; };
 		66145D4027BD53F100E2ACE7 /* AnalyzeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66145D3F27BD53F100E2ACE7 /* AnalyzeData.m */; };
 		662343A827B35F22002A29D4 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343A727B35F22002A29D4 /* Receipt.m */; };
@@ -32,6 +33,7 @@
 		665119EF27B6737E00E6B4FF /* WinningReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119EE27B6737E00E6B4FF /* WinningReceiptTableViewCell.m */; };
 		665119F227B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F127B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m */; };
 		665119F527B692D000E6B4FF /* ShowWinningProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */; };
+		6657BD3627BE8100004951E5 /* ReceiptApp_OCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6657BD3527BE8100004951E5 /* ReceiptApp_OCTests.m */; };
 		6675008F27B9F5A700541429 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675008E27B9F5A700541429 /* AnalyzeViewController.m */; };
 		6675009227BA417300541429 /* YearTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009127BA417300541429 /* YearTextField.m */; };
 		6675009527BA489000541429 /* MonthTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6675009427BA489000541429 /* MonthTextField.m */; };
@@ -42,10 +44,23 @@
 		66F2368827B24F1E007EB844 /* AddReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368727B24F1E007EB844 /* AddReceiptViewController.m */; };
 		66F2368B27B26D11007EB844 /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2368A27B26D11007EB844 /* ProductTableViewCell.m */; };
 		66F490FB27BAB8E6007460F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66F490FA27BAB8E6007460F4 /* GoogleService-Info.plist */; };
+		8A8CA207D3E530DA3C0580F6 /* Pods_ReceiptApp_OCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C6327353FBD3ABB52C839EC /* Pods_ReceiptApp_OCTests.framework */; };
 		A3DF69ECED19F4720B6A19B5 /* Pods_ReceiptApp_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		6657BD3727BE8100004951E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 664E91FA27B0FAA700EE53C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 664E920127B0FAA700EE53C1;
+			remoteInfo = ReceiptApp_OC;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0CBEAFCF9B407A9125EE114C /* Pods-ReceiptApp_OCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OCTests.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		281B3B3227BF327600D19E65 /* LoginVCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVCTests.m; sourceTree = "<group>"; };
 		3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReceiptApp_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.debug.xcconfig"; sourceTree = "<group>"; };
 		660C74B527B15E220085BA8D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -96,6 +111,8 @@
 		665119F127B6837B00E6B4FF /* ShowWinningReceiptDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningReceiptDetailViewController.m; sourceTree = "<group>"; };
 		665119F327B692D000E6B4FF /* ShowWinningProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowWinningProductTableViewCell.h; sourceTree = "<group>"; };
 		665119F427B692D000E6B4FF /* ShowWinningProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowWinningProductTableViewCell.m; sourceTree = "<group>"; };
+		6657BD3327BE8100004951E5 /* ReceiptApp_OCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReceiptApp_OCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6657BD3527BE8100004951E5 /* ReceiptApp_OCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiptApp_OCTests.m; sourceTree = "<group>"; };
 		6675008D27B9F5A700541429 /* AnalyzeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		6675008E27B9F5A700541429 /* AnalyzeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
 		6675009027BA417300541429 /* YearTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YearTextField.h; sourceTree = "<group>"; };
@@ -115,6 +132,8 @@
 		66F2368927B26D11007EB844 /* ProductTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProductTableViewCell.h; sourceTree = "<group>"; };
 		66F2368A27B26D11007EB844 /* ProductTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProductTableViewCell.m; sourceTree = "<group>"; };
 		66F490FA27BAB8E6007460F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9C6327353FBD3ABB52C839EC /* Pods_ReceiptApp_OCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReceiptApp_OCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B20A41E0BD663E4D50153DBD /* Pods-ReceiptApp_OCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OCTests.release.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests.release.xcconfig"; sourceTree = "<group>"; };
 		C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.release.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +146,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657BD3027BE8100004951E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A8CA207D3E530DA3C0580F6 /* Pods_ReceiptApp_OCTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -134,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				664E920427B0FAA700EE53C1 /* ReceiptApp_OC */,
+				6657BD3427BE8100004951E5 /* ReceiptApp_OCTests */,
 				664E920327B0FAA700EE53C1 /* Products */,
 				E98DD1C93FD3873AB97C372D /* Pods */,
 				DB5437E760B448445B034464 /* Frameworks */,
@@ -144,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				664E920227B0FAA700EE53C1 /* ReceiptApp_OC.app */,
+				6657BD3327BE8100004951E5 /* ReceiptApp_OCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,10 +282,20 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6657BD3427BE8100004951E5 /* ReceiptApp_OCTests */ = {
+			isa = PBXGroup;
+			children = (
+				6657BD3527BE8100004951E5 /* ReceiptApp_OCTests.m */,
+				281B3B3227BF327600D19E65 /* LoginVCTests.m */,
+			);
+			path = ReceiptApp_OCTests;
+			sourceTree = "<group>";
+		};
 		DB5437E760B448445B034464 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */,
+				9C6327353FBD3ABB52C839EC /* Pods_ReceiptApp_OCTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -266,6 +305,8 @@
 			children = (
 				3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */,
 				C636B89971EC240700961575 /* Pods-ReceiptApp_OC.release.xcconfig */,
+				0CBEAFCF9B407A9125EE114C /* Pods-ReceiptApp_OCTests.debug.xcconfig */,
+				B20A41E0BD663E4D50153DBD /* Pods-ReceiptApp_OCTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -292,6 +333,26 @@
 			productReference = 664E920227B0FAA700EE53C1 /* ReceiptApp_OC.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6657BD3227BE8100004951E5 /* ReceiptApp_OCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6657BD3B27BE8100004951E5 /* Build configuration list for PBXNativeTarget "ReceiptApp_OCTests" */;
+			buildPhases = (
+				4E2F04C2B854A07CEA0DAFFA /* [CP] Check Pods Manifest.lock */,
+				6657BD2F27BE8100004951E5 /* Sources */,
+				6657BD3027BE8100004951E5 /* Frameworks */,
+				6657BD3127BE8100004951E5 /* Resources */,
+				09D9649B63E955D8530042BF /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6657BD3827BE8100004951E5 /* PBXTargetDependency */,
+			);
+			name = ReceiptApp_OCTests;
+			productName = ReceiptApp_OCTests;
+			productReference = 6657BD3327BE8100004951E5 /* ReceiptApp_OCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -303,6 +364,10 @@
 				TargetAttributes = {
 					664E920127B0FAA700EE53C1 = {
 						CreatedOnToolsVersion = 13.2;
+					};
+					6657BD3227BE8100004951E5 = {
+						CreatedOnToolsVersion = 13.2;
+						TestTargetID = 664E920127B0FAA700EE53C1;
 					};
 				};
 			};
@@ -320,6 +385,7 @@
 			projectRoot = "";
 			targets = (
 				664E920127B0FAA700EE53C1 /* ReceiptApp_OC */,
+				6657BD3227BE8100004951E5 /* ReceiptApp_OCTests */,
 			);
 		};
 /* End PBXProject section */
@@ -336,9 +402,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657BD3127BE8100004951E5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		09D9649B63E955D8530042BF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1B47C4AE28CE21F951FDFA6A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -355,6 +445,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ReceiptApp_OC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E2F04C2B854A07CEA0DAFFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReceiptApp_OCTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -419,7 +531,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6657BD2F27BE8100004951E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				281B3B3327BF327600D19E65 /* LoginVCTests.m in Sources */,
+				6657BD3627BE8100004951E5 /* ReceiptApp_OCTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6657BD3827BE8100004951E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 664E920127B0FAA700EE53C1 /* ReceiptApp_OC */;
+			targetProxy = 6657BD3727BE8100004951E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		664E920E27B0FAA700EE53C1 /* Main.storyboard */ = {
@@ -611,6 +740,42 @@
 			};
 			name = Release;
 		};
+		6657BD3927BE8100004951E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CBEAFCF9B407A9125EE114C /* Pods-ReceiptApp_OCTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6AM223RC6B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tsaisi7.ReceiptApp-OCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReceiptApp_OC.app/ReceiptApp_OC";
+			};
+			name = Debug;
+		};
+		6657BD3A27BE8100004951E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B20A41E0BD663E4D50153DBD /* Pods-ReceiptApp_OCTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6AM223RC6B;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tsaisi7.ReceiptApp-OCTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReceiptApp_OC.app/ReceiptApp_OC";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,6 +793,15 @@
 			buildConfigurations = (
 				664E921C27B0FAAA00EE53C1 /* Debug */,
 				664E921D27B0FAAA00EE53C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6657BD3B27BE8100004951E5 /* Build configuration list for PBXNativeTarget "ReceiptApp_OCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6657BD3927BE8100004951E5 /* Debug */,
+				6657BD3A27BE8100004951E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

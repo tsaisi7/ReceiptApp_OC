@@ -10,4 +10,12 @@ target 'ReceiptApp_OC' do
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
     pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
+
+    target 'ReceiptApp_OCTests' do
+      inherit! :search_paths
+      pod 'Firebase/Analytics'
+      pod 'Firebase/Auth'
+      pod 'Firebase/Firestore'
+      
+      end
 end

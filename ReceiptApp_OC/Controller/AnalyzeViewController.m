@@ -28,9 +28,8 @@
     
     self.now = [NSDate date];
     self.year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:self.now];
-    self.dates = [self.data clearAnalyzeDataArray];
+    [self.data initialAllAnalyzeData];
     [self getDateWithYear:self.year];
-    
     
     CGFloat chartViewWidth = self.chartView.frame.size.width;
     CGFloat chartViewHeight = self.chartView.frame.size.height;
@@ -38,25 +37,25 @@
     self.aaChartView.frame = CGRectMake(0, 0, chartViewWidth, chartViewHeight);
     [self.chartView addSubview:self.aaChartView];
     
-    self.aaChartModel = AAChartModel.new
-    .chartTypeSet(AAChartTypePie)
-    .tooltipValueSuffixSet(@"NTD")
-    .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
-    .seriesSet(@[AASeriesElement.new
-                     .nameSet(@"消費金額")
-                     .innerSizeSet(@"50%")
-                     .dataSet(self.dates)]);
     dispatch_group_notify(self.group,dispatch_get_main_queue(), ^{
+        self.aaChartModel = AAChartModel.new
+        .chartTypeSet(AAChartTypePie)
+        .tooltipValueSuffixSet(@"NTD")
+        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
+        .seriesSet(@[AASeriesElement.new
+                         .nameSet(@"消費金額")
+                         .innerSizeSet(@"50%")
+                         .dataSet([self.data backAnalyzeDataArray])]);
         [self.aaChartView aa_drawChartWithChartModel:self.aaChartModel];
         NSLog(@"DONE");
     });
-
 }
+
 
 - (IBAction)nextMonth:(id)sender{
     self.year = self.year + 1;
     self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
-    self.dates = [self.data clearAnalyzeDataArray];
+    [self.data initialAllAnalyzeData];
     [self getDateWithYear:self.year];
     dispatch_group_notify(self.group,dispatch_get_main_queue(), ^{
         self.aaChartModel = AAChartModel.new
@@ -66,7 +65,7 @@
         .seriesSet(@[AASeriesElement.new
                         .nameSet(@"消費金額")
                         .innerSizeSet(@"50%")
-                        .dataSet(self.dates)]);
+                        .dataSet([self.data backAnalyzeDataArray])]);
         [self.aaChartView aa_refreshChartWithChartModel:self.aaChartModel];
         NSLog(@"DONE");
     });
@@ -75,7 +74,7 @@
 - (IBAction)lastMonth:(id)sender{
     self.year = self.year - 1;
     self.yearLabel.text = [[NSString alloc]initWithFormat:@"%ld",self.year-1911];
-    self.dates = [self.data clearAnalyzeDataArray];
+    [self.data initialAllAnalyzeData];
 
     [self getDateWithYear:self.year];
     dispatch_group_notify(self.group,dispatch_get_main_queue(), ^{
@@ -86,7 +85,7 @@
         .seriesSet(@[AASeriesElement.new
                         .nameSet(@"消費金額")
                         .innerSizeSet(@"50%")
-                        .dataSet(self.dates)]);
+                        .dataSet([self.data backAnalyzeDataArray])]);
 
         [self.aaChartView aa_refreshChartWithChartModel:self.aaChartModel];
         NSLog(@"DONE");
@@ -113,9 +112,7 @@
                     if (![totalExpense isEqual:@"尚未輸入金額"]){
                         totalExp = totalExp + [totalExpense intValue];
                     }
-                    [self.data setMonth:i setExpense:totalExp];
-                    NSArray *array = [self.data getAnalyzeData];
-                    [self.dates setObject:array atIndexedSubscript:i-1];
+                    [self.data setAnalyzeDataWithMonth:[NSNumber numberWithInteger: i] WithExpense:[NSNumber numberWithInteger: totalExp]];
                 }
                 NSLog(@"TEST");
                 dispatch_group_leave(self.group);

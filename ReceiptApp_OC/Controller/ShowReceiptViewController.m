@@ -21,50 +21,45 @@
 FIRUser *user_showReceipt;
 FIRDocumentReference *ref_showReceipt;
 
-NSInteger totalExp = 0;
-NSDate *now;
-NSInteger year;
-NSInteger month;
-NSInteger day;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.receipts = [[NSMutableArray alloc]init];
-    now = [NSDate date];
-    year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:now];
-    month = [[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:now];
-    day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:now];
+    self.now = [NSDate date];
+    self.year = [[NSCalendar currentCalendar]component:NSCalendarUnitYear fromDate:self.now];
+    self.month = [[NSCalendar currentCalendar]component:NSCalendarUnitMonth fromDate:self.now];
+    self.day = [[NSCalendar currentCalendar]component:NSCalendarUnitDay fromDate:self.now];
+    self.totalExp = 0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.user = [FIRAuth auth].currentUser;
     self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
-    [self readDateWithYear:year month:month day:day];
+    [self readDateWithYear:self.year month:self.month day:self.day];
     
 }
 
 - (IBAction)nextMonth:(id)sender{
-    if (month != 12){
-        month = month + 1;
-        [self readDateWithYear:year month:month day:day];
+    if (self.month != 12){
+        self.month = self.month + 1;
+        [self readDateWithYear:self.year month:self.month day:self.day];
     }else{
-        year = year + 1;
-        month = 1;
-        [self readDateWithYear:year month:month day:day];
+        self.year = self.year + 1;
+        self.month = 1;
+        [self readDateWithYear:self.year month:self.month day:self.day];
 
     }
 }
 // 下個月
 
 - (IBAction)lastMonth:(id)sender{
-    if (month != 1){
-        month = month - 1;
-        [self readDateWithYear:year month:month day:day];
+    if (self.month != 1){
+        self.month = self.month - 1;
+        [self readDateWithYear:self.year month:self.month day:self.day];
 
     }else{
-        year = year - 1;
-        month =  12;
-        [self readDateWithYear:year month:month day:day];
+        self.year = self.year - 1;
+        self.month =  12;
+        [self readDateWithYear:self.year month:self.month day:self.day];
     }
 }
 // 上個月
@@ -80,11 +75,11 @@ NSInteger day;
         }
         if (snapshot){
             self.receipts = [NSMutableArray array];
-            totalExp = 0;
+            self.totalExp = 0;
             self.dateLabel.text = [[NSString alloc]initWithFormat:@"民國 %@ 年 %@ 月",yearStr,monthStr];
             [self.tableView reloadData];
             self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
-            self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)totalExp];
+            self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.totalExp];
             
             for (FIRDocumentSnapshot *document in snapshot.documents){
                 NSString *storeName = document.data[@"storeName"];
@@ -103,16 +98,12 @@ NSInteger day;
                 [self.receipts addObject: receipt];
                 
                 if (![totalExpense isEqual:@"尚未輸入金額"]){
-                    NSLog(@"1receipt totalExp:  %ld",totalExp);
-                    NSLog(@"2receipt totalExpense:  %lu",(unsigned long)[totalExpense intValue]);
-                    totalExp = totalExp + [totalExpense intValue];
-                    NSLog(@"3receipt totalExp:  %lu",(unsigned long)totalExp);
-
+                    self.totalExp = self.totalExp + [totalExpense intValue];
                 }
                 
                 [self.tableView reloadData];
                 self.totalCountLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.receipts.count];
-                self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)totalExp];
+                self.totalExpenseLabel.text = [[NSString alloc]initWithFormat:@"%lu", (unsigned long)self.totalExp];
             }
             
         }

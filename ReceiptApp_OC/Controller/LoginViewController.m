@@ -7,6 +7,7 @@
 
 #import "LoginViewController.h"
 @import Firebase;
+
 @interface LoginViewController ()
 
 @end

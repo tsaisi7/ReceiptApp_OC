@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     self.user = [FIRAuth auth].currentUser;
     self.ref = [[[FIRFirestore firestore] collectionWithPath:@"Users"] documentWithPath:self.user.uid];
@@ -51,11 +50,11 @@
 
 - (void)readData{
     [[self.ref collectionWithPath:@"Receipts"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
-        if (error != nil){
+        if (error){
             NSLog(@"ERROR");
             return;
         }
-        if (snapshot != nil){
+        if (snapshot){
             for (FIRDocumentSnapshot *document in snapshot.documents){
                 [[[[self.ref collectionWithPath:@"Receipts"]documentWithPath:document.documentID]collectionWithPath:@"products"] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
                     if (error){
@@ -151,8 +150,13 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(Receipt* evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        NSLog(@"0====%@",evaluatedObject.storeName);
+        NSLog(@"1====%@",evaluatedObject.products);
         for (Product* product in evaluatedObject.products){
-            return [evaluatedObject.storeName localizedCaseInsensitiveContainsString:searchText] || [product.name localizedCaseInsensitiveContainsString:searchText];
+            NSLog(@"2====%@",product.name);
+            if ([evaluatedObject.storeName localizedCaseInsensitiveContainsString:searchText] || [product.name localizedCaseInsensitiveContainsString:searchText]){
+                return YES;
+            }
         }
         return [evaluatedObject.storeName localizedCaseInsensitiveContainsString:searchText];
     }];

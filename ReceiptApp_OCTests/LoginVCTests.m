@@ -6,8 +6,12 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "LoginViewController.h"
+@import Firebase;
 
 @interface LoginVCTests : XCTestCase
+
+@property LoginViewController *loginVC;
 
 @end
 
@@ -15,15 +19,16 @@
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.loginVC = [[LoginViewController alloc]init];
+    self.loginVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LoginViewController"];
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testLoginSuccess {
+    
 }
 
 - (void)testPerformanceExample {

@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSMutableArray* receipts;
 @property FIRUser* user;
 @property FIRDocumentReference* ref;
+@property NSInteger totalExp;
+@property NSDate *now;
+@property NSInteger year;
+@property NSInteger month;
+@property NSInteger day;
 
 @end
 

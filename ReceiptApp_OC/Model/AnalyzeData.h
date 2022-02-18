@@ -9,14 +9,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AnalyzeData : NSObject{
-    NSString *month;
-    NSNumber *expense;
-}
+@interface AnalyzeData : NSObject
 
--(void) setMonth: (NSInteger) m setExpense: (NSInteger) e;
--(NSArray*) getAnalyzeData;
--(NSMutableArray*) clearAnalyzeDataArray;
+-(void) initialAllAnalyzeData;
+-(void) setAnalyzeDataWithMonth:(NSNumber*) month WithExpense:(NSNumber*) expense;
+-(NSArray*) backAnalyzeDataArray;
 
 @end
 

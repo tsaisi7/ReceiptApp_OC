@@ -18,7 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton* leftButton;
 @property (weak, nonatomic) IBOutlet UIButton* rightButton;
 @property (weak, nonatomic) IBOutlet UIView* chartView;
-@property NSMutableArray* dates;
 @property NSDate* now;
 @property NSInteger year;
 @property NSInteger month;
