@@ -37,6 +37,22 @@
     self.aaChartView.frame = CGRectMake(0, 0, chartViewWidth, chartViewHeight);
     [self.chartView addSubview:self.aaChartView];
     
+//    dispatch_group_notify(self.group,dispatch_get_main_queue(), ^{
+//        self.aaChartModel = AAChartModel.new
+//        .chartTypeSet(AAChartTypePie)
+//        .tooltipValueSuffixSet(@"NTD")
+//        .colorsThemeSet(@[@"#F4E500",@"#FDC60B",@"#F18E1C",@"#EA621F",@"#E32322",@"#E32322",@"#6D398B",@"#444E99",@"#2A71B0",@"#0696BB",@"#008E5B",@"#8CBB26"])
+//        .seriesSet(@[AASeriesElement.new
+//                         .nameSet(@"消費金額")
+//                         .innerSizeSet(@"50%")
+//                         .dataSet([self.data backAnalyzeDataArray])]);
+//        [self.aaChartView aa_drawChartWithChartModel:self.aaChartModel];
+//        NSLog(@"DONE");
+//    });
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     dispatch_group_notify(self.group,dispatch_get_main_queue(), ^{
         self.aaChartModel = AAChartModel.new
         .chartTypeSet(AAChartTypePie)
@@ -50,7 +66,6 @@
         NSLog(@"DONE");
     });
 }
-
 
 - (IBAction)nextMonth:(id)sender{
     self.year = self.year + 1;
@@ -98,7 +113,7 @@
         NSString *monthStr;
         monthStr = i < 10 ? [[NSString alloc]initWithFormat:@"0%d",i] : [[NSString alloc]initWithFormat:@"%d",i];
         dispatch_group_enter(self.group);
-        [[[[self.ref collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] addSnapshotListener:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        [[[[self.ref collectionWithPath:@"Receipts"] queryWhereField:@"year" isEqualTo:yearStr] queryWhereField:@"month" isEqualTo:monthStr] getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
             if (error != nil){
                 NSLog(@"ERROR");
                 dispatch_group_leave(self.group);
@@ -112,7 +127,7 @@
                     if (![totalExpense isEqual:@"尚未輸入金額"]){
                         totalExp = totalExp + [totalExpense intValue];
                     }
-                    [self.data setAnalyzeDataWithMonth:[NSNumber numberWithInteger: i] WithExpense:[NSNumber numberWithInteger: totalExp]];
+                    [self.data setAnalyzeDataWithMonth:i WithExpense:totalExp];
                 }
                 NSLog(@"TEST");
                 dispatch_group_leave(self.group);

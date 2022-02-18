@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		281B3B3327BF327600D19E65 /* LoginVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 281B3B3227BF327600D19E65 /* LoginVCTests.m */; };
+		281B3B3727BF905900D19E65 /* AnalyzeDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 281B3B3627BF905900D19E65 /* AnalyzeDataTests.m */; };
 		660C74B727B15E220085BA8D /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660C74B627B15E220085BA8D /* ProfileViewController.m */; };
 		66145D4027BD53F100E2ACE7 /* AnalyzeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 66145D3F27BD53F100E2ACE7 /* AnalyzeData.m */; };
 		662343A827B35F22002A29D4 /* Receipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 662343A727B35F22002A29D4 /* Receipt.m */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		0CBEAFCF9B407A9125EE114C /* Pods-ReceiptApp_OCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OCTests.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OCTests/Pods-ReceiptApp_OCTests.debug.xcconfig"; sourceTree = "<group>"; };
 		281B3B3227BF327600D19E65 /* LoginVCTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginVCTests.m; sourceTree = "<group>"; };
+		281B3B3627BF905900D19E65 /* AnalyzeDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyzeDataTests.m; sourceTree = "<group>"; };
 		3DDA33B471F6D3793FC6F102 /* Pods_ReceiptApp_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReceiptApp_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F624C6FBE5C3D9CBD5A37DD /* Pods-ReceiptApp_OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReceiptApp_OC.debug.xcconfig"; path = "Target Support Files/Pods-ReceiptApp_OC/Pods-ReceiptApp_OC.debug.xcconfig"; sourceTree = "<group>"; };
 		660C74B527B15E220085BA8D /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				6657BD3527BE8100004951E5 /* ReceiptApp_OCTests.m */,
 				281B3B3227BF327600D19E65 /* LoginVCTests.m */,
+				281B3B3627BF905900D19E65 /* AnalyzeDataTests.m */,
 			);
 			path = ReceiptApp_OCTests;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			files = (
 				281B3B3327BF327600D19E65 /* LoginVCTests.m in Sources */,
 				6657BD3627BE8100004951E5 /* ReceiptApp_OCTests.m in Sources */,
+				281B3B3727BF905900D19E65 /* AnalyzeDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
